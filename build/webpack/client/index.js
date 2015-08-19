@@ -1,21 +1,21 @@
-const webpack           = require('webpack'),
-      makeConfig        = require('../make-config'),
-      projectConfig     = require('../../../config'),
-      HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'),
+  makeConfig = require('../make-config'),
+  projectConfig = require('../../../config'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = makeConfig({
-  name   : 'Client',
-  target : 'web',
-  entry  : {
-    app : [
+  name: 'Client',
+  target: 'web',
+  entry: {
+    app: [
       projectConfig.inSrc('entry-points/client')
     ],
-    vendor : projectConfig.VENDOR_DEPENDENCIES
+    vendor: projectConfig.VENDOR_DEPENDENCIES
   },
-  output : {
-    filename : '[name].[hash].js',
-    path     : projectConfig.inDist('client'),
-    publicPath : '/'
+  output: {
+    filename: '[name].[hash].js',
+    path: projectConfig.inDist('client'),
+    publicPath: '/'
   }
 });
 
@@ -32,15 +32,15 @@ commonChunkPlugin.__KARMA_IGNORE__ = true;
 
 config.plugins.push(
   new webpack.DefinePlugin({
-    '__CLIENT__' : true,
-    '__SERVER__' : false
+    __CLIENT__: true,
+    __SERVER__: false
   }),
   new HtmlWebpackPlugin({
-    template : projectConfig.inSrc('index.html'),
-    hash     : true,
-    filename : 'index.html',
-    minify   : projectConfig.__PROD__,
-    inject   : 'body'
+    template: projectConfig.inSrc('index.html'),
+    hash: true,
+    filename: 'index.html',
+    minify: projectConfig.__PROD__,
+    inject: 'body'
   }),
   commonChunkPlugin
 );
@@ -50,8 +50,8 @@ config.plugins.push(
 // ------------------------------------
 config.module.loaders.push(
   {
-    test : /\.scss$/,
-    loaders : [
+    test: /\.scss$/,
+    loaders: [
       'style-loader',
       'css-loader',
       'autoprefixer?browsers=last 2 version',

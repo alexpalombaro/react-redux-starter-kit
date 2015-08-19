@@ -1,5 +1,5 @@
 const webpack = require('webpack'),
-      ExtractTextPlugin = require('extract-text-webpack-plugin');
+  ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function makeClientProductionConfig (config) {
   config.plugins.push(

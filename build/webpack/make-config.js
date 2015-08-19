@@ -1,27 +1,27 @@
-const assign        = require('object-assign'),
-      webpack       = require('webpack'),
-      projectConfig = require('../../config');
+const assign = require('object-assign'),
+  webpack = require('webpack'),
+  projectConfig = require('../../config');
 
 function makeDefaultConfig () {
   const config = {
-    output : {
-      filename : '[name].[hash].js'
+    output: {
+      filename: '[name].[hash].js'
     },
-    target  : 'web',
-    plugins : [
+    target: 'web',
+    plugins: [
       new webpack.DefinePlugin({
-        'process.env' : {
-          'NODE_ENV' : JSON.stringify(projectConfig.NODE_ENV)
+        'process.env': {
+          NODE_ENV: JSON.stringify(projectConfig.NODE_ENV)
         },
-        '__DEBUG__' : projectConfig.__DEBUG__,
-        '__DEV__'   : projectConfig.__DEV__,
-        '__PROD__'  : projectConfig.__PROD__
+        __DEBUG__: projectConfig.__DEBUG__,
+        __DEV__: projectConfig.__DEV__,
+        __PROD__: projectConfig.__PROD__
       }),
       new webpack.optimize.DedupePlugin()
     ],
-    resolve : {
-      extensions : ['', '.js', '.jsx'],
-      alias : [
+    resolve: {
+      extensions: ['', '.js', '.jsx'],
+      alias: [
         'actions',
         'components',
         'constants',
@@ -37,27 +37,27 @@ function makeDefaultConfig () {
         'utils',
         'views'
       ].reduce(function (acc, x) {
-        acc[x] = projectConfig.inSrc(x);
-        return acc;
-      }, {})
+          acc[x] = projectConfig.inSrc(x);
+          return acc;
+        }, {})
     },
-    module : {
-      preLoaders : [
+    module: {
+      preLoaders: [
         {
-          test : /\.(js|jsx)$/,
-          loaders : ['eslint-loader'],
-          include : projectConfig.inProject(projectConfig.SRC_DIRNAME)
+          test: /\.(js|jsx)$/,
+          loaders: ['eslint-loader'],
+          include: projectConfig.inProject(projectConfig.SRC_DIRNAME)
         }
       ],
-      loaders : [{
-        test : /\.(js|jsx)$/,
-        include : projectConfig.inProject(projectConfig.SRC_DIRNAME),
-        loaders : ['babel?optional[]=runtime&stage=0']
+      loaders: [{
+        test: /\.(js|jsx)$/,
+        include: projectConfig.inProject(projectConfig.SRC_DIRNAME),
+        loaders: ['babel?optional[]=runtime&stage=0']
       }]
     },
-    eslint : {
-      configFile : projectConfig.inProject('.eslintrc'),
-      failOnError : projectConfig.__PROD__
+    eslint: {
+      configFile: projectConfig.inProject('.eslintrc'),
+      failOnError: projectConfig.__PROD__
     }
   };
 
@@ -74,19 +74,19 @@ function makeDefaultConfig () {
   if (projectConfig.__PROD__) {
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
-        output : {
-          'comments'  : false
+        output: {
+          comments: false
         },
-        compress : {
-          'unused'    : true,
-          'dead_code' : true
+        compress: {
+          unused: true,
+          dead_code: true
         }
       })
     );
   }
 
   return config;
-};
+}
 
 module.exports = function makeConfig (configModifier) {
   return assign({}, makeDefaultConfig(), configModifier);

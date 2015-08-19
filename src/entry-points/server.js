@@ -17,7 +17,7 @@ export default function render (request) {
         }
 
         const rendered = React.renderToString(
-          <App initialState={initialState} />
+          <App initialState={initialState}/>
         );
         callback(null, rendered);
       });

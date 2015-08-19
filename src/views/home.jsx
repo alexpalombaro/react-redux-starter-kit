@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 @connect(state => ({
-  sampleStore : state.sample
+  sampleStore: state.sample
 }))
-export default class HomeView extends React.Component {
+class HomeView extends React.Component {
   constructor () {
     super();
   }
@@ -17,3 +17,5 @@ export default class HomeView extends React.Component {
     );
   }
 }
+
+export default HomeView;

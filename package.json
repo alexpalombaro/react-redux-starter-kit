@@ -4,7 +4,7 @@
   "description": "Boilerplate to get you started with React, Redux, React-Router, and Koa",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rmdir /s /q dist",
     "compile": "webpack",
     "dev": "node --harmony ./build/webpack-dev-server",
     "dev:debug": "npm run dev -- --debug",

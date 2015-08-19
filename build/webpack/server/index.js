@@ -1,21 +1,21 @@
-const webpack       = require('webpack'),
-      makeConfig    = require('../make-config'),
-      projectConfig = require('../../../config');
+const webpack = require('webpack'),
+  makeConfig = require('../make-config'),
+  projectConfig = require('../../../config');
 
 const config = makeConfig({
-  name   : 'server',
-  target : 'node',
-  entry  : {
-    app : [
+  name: 'server',
+  target: 'node',
+  entry: {
+    app: [
       projectConfig.inSrc('entry-points/server')
     ]
   },
-  output : {
-    filename : 'index.js',
-    path     : projectConfig.inDist('server'),
-    libraryTarget : 'commonjs2'
+  output: {
+    filename: 'index.js',
+    path: projectConfig.inDist('server'),
+    libraryTarget: 'commonjs2'
   },
-  preloaders : []
+  preloaders: []
 });
 
 // ------------------------------------
@@ -23,8 +23,8 @@ const config = makeConfig({
 // ------------------------------------
 config.plugins.push(
   new webpack.DefinePlugin({
-    '__CLIENT__' : false,
-    '__SERVER__' : true
+    __CLIENT__: false,
+    __SERVER__: true
   })
 );
 
@@ -33,8 +33,8 @@ config.plugins.push(
 // ------------------------------------
 config.module.loaders.push(
   {
-    test : /\.scss$/,
-    loaders : [
+    test: /\.scss$/,
+    loaders: [
       'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]',
       'autoprefixer?browsers=last 2 version',
       'sass-loader?includePaths[]=' + projectConfig.inSrc('styles')

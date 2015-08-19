@@ -1,5 +1,7 @@
+/* eslint-disable no-process-env */
+
 const runRouter = require('../../dist/server'),
-      USE_CACHE = process.env.NODE_ENV === 'production';
+  USE_CACHE = process.env.NODE_ENV === 'production';
 
 function renderIntoTemplate (template, content) {
   return template.replace('${content}', content);

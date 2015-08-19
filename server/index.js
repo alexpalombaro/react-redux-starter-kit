@@ -1,7 +1,7 @@
-const fs     = require('fs'),
-      koa    = require('koa'),
-      serve  = require('koa-static'),
-      config = require('../config');
+const fs = require('fs'),
+  koa = require('koa'),
+  serve = require('koa-static'),
+  config = require('../config');
 
 const app = koa();
 
@@ -15,7 +15,7 @@ app.use(require('./middleware/logger'));
 // Static File Middleware
 // ------------------------------------
 app.use(serve(config.inDist('client'), {
-  index : '__IGNORE_INDEX.HTML__'
+  index: '__IGNORE_INDEX.HTML__'
 }));
 
 // ------------------------------------
