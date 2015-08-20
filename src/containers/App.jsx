@@ -11,11 +11,11 @@ export default class ClientApp extends React.Component {
     initialState: React.PropTypes.object
   };
 
-  constructor () {
+  constructor() {
     super();
   }
 
-  renderDevTools () {
+  renderDevTools() {
     return (
       <DebugPanel top left bottom key='debugPanel'>
         <DevTools store={store} monitor={LogMonitor}/>
@@ -23,7 +23,7 @@ export default class ClientApp extends React.Component {
     );
   }
 
-  renderRouter () {
+  renderRouter() {
     if (__SERVER__) {
       return (
         <Router {...this.props.initialState} />
@@ -37,7 +37,7 @@ export default class ClientApp extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         {__DEBUG__ && this.renderDevTools()}

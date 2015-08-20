@@ -1,12 +1,12 @@
 import React from 'react';
-import './core-layout.scss';
+import './CoreLayout.scss';
 
 export default class CoreLayout extends React.Component {
-  constructor () {
+  constructor() {
     super();
   }
 
-  render () {
+  render() {
     return (
       <div className='page-container'>
         <div className='view-container'>

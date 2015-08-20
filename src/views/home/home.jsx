@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
   sampleStore: state.sample
 }))
 class HomeView extends React.Component {
-  constructor () {
+  constructor() {
     super();
   }
 
-  render () {
+  render() {
     return (
       <div className='view view--home container'>
         <h1 className='text-center'>{this.props.sampleStore.message}</h1>
+        <button>Update message</button>
       </div>
     );
   }
