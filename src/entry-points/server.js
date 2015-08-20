@@ -4,12 +4,12 @@ import Location from 'react-router/lib/Location';
 import routes from '../routes';
 import App from 'containers/app';
 
-export default function render (request) {
-  return function renderThunk (callback) {
+export default function render(request) {
+  return function renderThunk(callback) {
     const location = new Location(request.path, request.query);
 
     try {
-      Router.run(routes, location, function (error, initialState, transition) {
+      Router.run(routes, location, function(error, initialState, transition) {
         if (!initialState) {
           throw new Error(
             `Could not render ${request.path}: no initial state returned.`

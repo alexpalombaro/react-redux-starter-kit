@@ -1,3 +1,5 @@
+/* eslint-disable no-process-env */
+
 if (process.env.NODE_ENV === 'production') {
   module.exports = exports = [
     require('./build/webpack/client')(),

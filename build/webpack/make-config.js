@@ -2,7 +2,7 @@ const assign = require('object-assign'),
   webpack = require('webpack'),
   projectConfig = require('../../config');
 
-function makeDefaultConfig () {
+function makeDefaultConfig() {
   const config = {
     output: {
       filename: '[name].[hash].js'
@@ -36,7 +36,7 @@ function makeDefaultConfig () {
         'styles',
         'utils',
         'views'
-      ].reduce(function (acc, x) {
+      ].reduce(function(acc, x) {
           acc[x] = projectConfig.inSrc(x);
           return acc;
         }, {})
@@ -88,6 +88,7 @@ function makeDefaultConfig () {
   return config;
 }
 
-module.exports = function makeConfig (configModifier) {
+module.exports = function makeConfig(configModifier) {
+  console.log(makeDefaultConfig());
   return assign({}, makeDefaultConfig(), configModifier);
 };

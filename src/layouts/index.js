@@ -1,3 +1,1 @@
-/**
- * Created by k021491 on 20/08/2015.
- */
+export { default as CoreLayout } from './core/CoreLayout.jsx';

@@ -60,6 +60,6 @@ config.module.loaders.push(
   }
 );
 
-module.exports = function makeClientConfig (type) {
+module.exports = function makeClientConfig(type) {
   return require('./_' + (type || projectConfig.NODE_ENV))(config);
 };

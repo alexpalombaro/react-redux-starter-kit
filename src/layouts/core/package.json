@@ -1,4 +1,5 @@
 {
-  "name": "application-name",
-  "version": "0.0.1"
+  "name": "CoreLayout",
+  "version": "0.0.1",
+  "main": "CoreLayout.jsx"
 }
