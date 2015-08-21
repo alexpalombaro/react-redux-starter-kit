@@ -1,1 +1,1 @@
-export { default as actionTypes } from './ActionTypes';
+export {default as actionTypes} from './ActionTypes';

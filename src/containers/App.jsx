@@ -1,9 +1,9 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import {Provider} from 'react-redux';
+import {Router} from 'react-router';
 import store from 'stores';
 import routes from 'routes';
-import { DevTools, LogMonitor, DebugPanel } from 'redux-devtools/lib/react';
+import {DevTools, LogMonitor, DebugPanel} from 'redux-devtools/lib/react';
 
 export default class ClientApp extends React.Component {
   static propTypes = {

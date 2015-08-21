@@ -1,5 +1,5 @@
-import { compose, createStore, combineReducers } from 'redux';
-import { devTools } from 'redux-devtools';
+import {compose, createStore, combineReducers} from 'redux';
+import {devTools} from 'redux-devtools';
 import * as reducers from 'reducers';
 
 var buildStore;

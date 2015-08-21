@@ -1,8 +1,8 @@
-import { UPDATE_MESSAGE } from 'constants';
+import {actionTypes} from 'constants';
 
 export function updateMessage(message) {
   return {
-    type: UPDATE_MESSAGE,
-    payload: { message }
+    type: actionTypes.UPDATE_MESSAGE,
+    payload: {message}
   }
 }
