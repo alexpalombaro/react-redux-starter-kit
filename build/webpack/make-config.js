@@ -23,15 +23,12 @@ function makeDefaultConfig() {
       extensions: ['', '.js', '.jsx'],
       alias: [
         'actions',
-        'components',
         'constants',
         'containers',
-        'dispatchers',
         'layouts',
-        'models',
+        'middleware',
         'reducers',
         'routes',
-        'services',
         'stores',
         'styles',
         'utils',
@@ -89,6 +86,5 @@ function makeDefaultConfig() {
 }
 
 module.exports = function makeConfig(configModifier) {
-  console.log(makeDefaultConfig());
   return assign({}, makeDefaultConfig(), configModifier);
 };

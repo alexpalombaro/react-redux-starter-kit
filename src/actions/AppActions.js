@@ -6,3 +6,13 @@ export function updateMessage(message) {
     payload: {message}
   }
 }
+
+export function updateMessageAsync(message, delay) {
+  return {
+    type: actionTypes.UPDATE_MESSAGE_ASYNC,
+    payload: {
+      message,
+      delay: (typeof delay === 'string' ? parseInt(delay) : delay)
+    }
+  }
+}

@@ -1,6 +1,4 @@
-import {createConstants} from 'utils';
-
-export default createConstants(
-  'UPDATE_MESSAGE',
-  'CLEAR_MESSAGE'
-)
+export default {
+  UPDATE_MESSAGE: 'UPDATE_MESSAGE',
+  UPDATE_MESSAGE_ASYNC: 'UPDATE_MESSAGE_ASYNC'
+}

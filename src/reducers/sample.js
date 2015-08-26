@@ -1,6 +1,6 @@
 import {createReducer} from 'utils';
 
-import {UPDATE_MESSAGE} from 'constants';
+import {actionTypes} from 'constants';
 
 const initialState = {
   message: 'Welcome to the React Redux Starter Kit!',
@@ -8,7 +8,10 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [UPDATE_MESSAGE]: (state, payload) => {
+  [actionTypes.UPDATE_MESSAGE]: (state, payload) => {
     return {...state, ...payload, inputValue: payload.message}
+  },
+  [actionTypes.UPDATE_MESSAGE_ASYNC]: (state, payload) => {
+    return {...state, message: 'TODO!'};
   }
 });

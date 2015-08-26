@@ -1,13 +1,21 @@
-import {compose, createStore, combineReducers} from 'redux';
+import {applyMiddleware, createStore, combineReducers, compose} from 'redux';
 import {devTools} from 'redux-devtools';
 import * as reducers from 'reducers';
 
+import {actionDelay} from 'middleware';
+
 var buildStore;
 
+const storeWithMiddleWare = applyMiddleware(
+  actionDelay
+);
+
+var finalStore;
+
 if (__DEBUG__) {
-  buildStore = compose(devTools(), createStore);
+  finalStore = compose(storeWithMiddleWare, devTools(), createStore);
 } else {
-  buildStore = createStore;
+  finalStore = storeWithMiddleWare(createStore);
 }
 
-export default buildStore(combineReducers(reducers));
+export default finalStore(combineReducers(reducers));

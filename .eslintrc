@@ -123,8 +123,7 @@
       "afterColon": true
     }],
     "lines-around-comment": [1, {
-      "beforeBlockComment": true,
-      "beforeLineComment": true
+      "beforeBlockComment": true
     }],
     "max-nested-callbacks": [2, 3],
     "new-cap": 0,
@@ -171,9 +170,7 @@
       "words" : true,
       "nonwords" : false
     }],
-    "spaced-comment": [2, "always", {
-      "exceptions": ["-", "+"]
-    }],
+    "spaced-comment": 0,
     "wrap-regex": 0,
 
     "constructor-super": 2,
