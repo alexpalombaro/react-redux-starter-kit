@@ -3,8 +3,8 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const resolve = require('path').resolve,
-  yargs = require('yargs').argv,
-  _slice = [].slice;
+      argv    = require('yargs').argv,
+      _slice  = [].slice;
 
 const SRC_DIRNAME = 'src',
   DIST_DIRNAME = 'dist',
@@ -19,11 +19,14 @@ function inProject() {
 // ------------------------------------
 module.exports = exports = {
 
-  // environment
+  // environment globals
   NODE_ENV: process.env.NODE_ENV,
-  __DEBUG__: !!yargs.debug,
+  __DEBUG__: !!argv.debug,
   __DEV__: process.env.NODE_ENV === 'development',
   __PROD__: process.env.NODE_ENV === 'production',
+
+  // configuration flags
+  QUIET_MODE: !!argv.quiet,
 
   // path helpers
   SRC_DIRNAME: SRC_DIRNAME,
