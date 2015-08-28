@@ -15,6 +15,7 @@ function makeDefaultConfig() {
         },
         __DEBUG__: projectConfig.__DEBUG__,
         __DEV__: projectConfig.__DEV__,
+        __DEV_TOOLS__: projectConfig.__DEV_TOOLS__,
         __PROD__: projectConfig.__PROD__
       }),
       new webpack.optimize.DedupePlugin()
@@ -88,3 +89,4 @@ function makeDefaultConfig() {
 module.exports = function makeConfig(configModifier) {
   return assign({}, makeDefaultConfig(), configModifier);
 };
+

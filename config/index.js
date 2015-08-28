@@ -3,8 +3,8 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const resolve = require('path').resolve,
-      argv    = require('yargs').argv,
-      _slice  = [].slice;
+  argv = require('yargs').argv,
+  _slice = [].slice;
 
 const SRC_DIRNAME = 'src',
   DIST_DIRNAME = 'dist',
@@ -22,6 +22,7 @@ module.exports = exports = {
   // environment globals
   NODE_ENV: process.env.NODE_ENV,
   __DEBUG__: !!argv.debug,
+  __DEV_TOOLS__:!!argv.devtools,
   __DEV__: process.env.NODE_ENV === 'development',
   __PROD__: process.env.NODE_ENV === 'production',
 

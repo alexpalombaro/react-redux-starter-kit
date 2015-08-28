@@ -12,7 +12,7 @@ const storeWithMiddleWare = applyMiddleware(
 
 var finalStore;
 
-if (__DEBUG__) {
+if (__DEBUG__ && __DEV_TOOLS__) {
   finalStore = compose(storeWithMiddleWare, devTools(), createStore);
 } else {
   finalStore = storeWithMiddleWare(createStore);

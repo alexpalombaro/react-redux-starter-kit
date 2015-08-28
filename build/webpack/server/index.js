@@ -35,13 +35,13 @@ config.module.loaders.push(
   {
     test: /\.scss$/,
     loaders: [
-      'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]',
+      'css/locals?modules&localIdentName=[name]__[local]__[hash:base64:5]',
       'autoprefixer?browsers=last 2 version',
       'sass-loader?includePaths[]=' + projectConfig.inSrc('styles')
     ]
   }
 );
 
-module.exports = function makeServerConfig (type) {
+module.exports = function makeServerConfig(type) {
   return require('./_' + (type || projectConfig.NODE_ENV))(config);
 };

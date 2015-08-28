@@ -1,0 +1,5 @@
+{
+  "name": "Actions",
+  "version": "0.0.1",
+  "main": "./actions.js"
+}

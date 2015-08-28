@@ -15,7 +15,7 @@ const server = new WebpackDevServer(webpack(makeCompiler()), {
   historyApiFallback: true
 });
 
-server.listen(config.WEBPACK_PORT, 'localhost', function () {
+server.listen(config.WEBPACK_PORT, 'localhost', function() {
   console.log('Webpack dev server running at localhost:' + config.WEBPACK_PORT);
 });
 

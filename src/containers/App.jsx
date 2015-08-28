@@ -40,7 +40,7 @@ export default class ClientApp extends React.Component {
   render() {
     return (
       <div>
-        {__DEBUG__ && this.renderDevTools()}
+        {__DEBUG__ && __DEV_TOOLS__ && this.renderDevTools()}
         <Provider store={store}>
           {() => this.renderRouter()}
         </Provider>

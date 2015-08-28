@@ -1,4 +1,4 @@
-import './Home.scss';
+import styles from './Home.scss';
 
 import React from 'react';
 import {connect} from 'react-redux';
@@ -28,12 +28,13 @@ class HomeView extends React.Component {
   _updateAsyncMessage() {
     var select = React.findDOMNode(this.refs.asyncDelaySelect);
     this.props.dispatch(updateMessageAsync('Updated message', select.value));
+    console.log(styles);
   }
 
   render() {
     return (
       <div className='view view--home container'>
-        <h1 className='text-center'>{this.props.sample.message}</h1>
+        <h1 className={'text-center ' + styles.private}>{this.props.sample.message}</h1>
         <input type='text' ref='inputText' value={this.props.sample.inputValue}
                onChange={this._updateInputTextHandler.bind(this)}/>
         <select ref='asyncDelaySelect'>
