@@ -4,8 +4,6 @@ import * as reducers from 'reducers';
 
 import {actionDelay} from 'middleware';
 
-var buildStore;
-
 const storeWithMiddleWare = applyMiddleware(
   actionDelay
 );

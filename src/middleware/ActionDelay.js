@@ -1,4 +1,4 @@
-import {actionTypes} from 'constants';
+import {actionTypes} from 'globals';
 
 export default function actionDelayMiddleware(store) {
   return next => action => {

@@ -1,5 +1,5 @@
 import {createReducer} from 'utils';
-import {actionTypes} from 'constants';
+import {actionTypes} from 'globals';
 
 //
 // Reducer state

@@ -24,8 +24,8 @@ function makeDefaultConfig() {
       extensions: ['', '.js', '.jsx'],
       alias: [
         'actions',
-        'constants',
         'containers',
+        'globals',
         'layouts',
         'middleware',
         'reducers',

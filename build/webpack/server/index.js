@@ -35,7 +35,7 @@ config.module.loaders.push(
   {
     test: /\.scss$/,
     loaders: [
-      'css/locals?modules&localIdentName=[name]__[local]__[hash:base64:5]',
+      'css-loader/locals?localIdentName=[name]--[local]---[hash:base64:5]',
       'autoprefixer?browsers=last 2 version',
       'sass-loader?includePaths[]=' + projectConfig.inSrc('styles')
     ]

@@ -1,7 +1,11 @@
+import assign from 'object-assign';
+
 export function createConstants(...constants) {
   return constants.reduce((acc, constant) => {
-    return {...acc, [constant]: constant};
-  })
+    return assign(acc, {
+      [constant]: constant
+    });
+  }, {});
 }
 
 export function createReducer(initialState, reducerMap) {

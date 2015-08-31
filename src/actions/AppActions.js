@@ -1,4 +1,4 @@
-import {actionTypes} from 'constants';
+import {actionTypes} from 'globals';
 
 export function updateMessage(message) {
   return {

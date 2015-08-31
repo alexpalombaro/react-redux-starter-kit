@@ -1,3 +1,3 @@
-module.exports = function makeServerDevelopmentConfig (config) {
+module.exports = function makeServerDevelopmentConfig(config) {
   return config;
 };

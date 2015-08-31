@@ -1,3 +1,3 @@
-module.exports = function makeServerProductionConfig (config) {
+module.exports = function makeServerProductionConfig(config) {
   return config;
 };
