@@ -34,7 +34,7 @@ function makeDefaultConfig() {
         'styles',
         'utils',
         'views'
-      ].reduce(function(acc, x) {
+      ].reduce(function (acc, x) {
           acc[x] = projectConfig.inSrc(x);
           return acc;
         }, {})

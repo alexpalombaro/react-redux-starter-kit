@@ -25,7 +25,7 @@ function makeDefaultConfig() {
       devtool: 'inline-source-map',
       resolve: WEBPACK_CONFIG.resolve,
       plugins: WEBPACK_CONFIG.plugins
-        .filter(function(plugin) {
+        .filter(function (plugin) {
           return !plugin.__KARMA_IGNORE__;
         }),
       module: {
@@ -46,7 +46,7 @@ function makeDefaultConfig() {
   };
 }
 
-module.exports = function(karmaConfig) {
+module.exports = function (karmaConfig) {
   return karmaConfig.set(
     require('./configs/_' + projectConfig.NODE_ENV)(makeDefaultConfig())
   );
