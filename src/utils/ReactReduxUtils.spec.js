@@ -3,7 +3,7 @@
 import {createConstants, createReducer} from 'utils';
 import {actionTypes} from 'globals';
 
-describe('(Utils) ReactReduxUtils', () => {
+describe('(utils) ReactReduxUtils', () => {
 
   describe('.createConstants()', () => {
     it('Should return object with keys matching arguments', () => {
