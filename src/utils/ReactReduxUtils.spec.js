@@ -32,7 +32,7 @@ describe('(Utils) ReactReduxUtils', () => {
         ['ACTION_B']: actionCallbackB
       });
       expect(reducer).to.be.a('function');
-      expect(reducer(initialState, {type: 'INVALID'})).to.be.a('object');
+      expect(reducer(initialState, {type: 'MISSING_ACTION'})).to.equal(initialState);
       expect(reducer(initialState, {type: 'ACTION_A', payload: {name: 'Fred'}})).to.eql({name: 'Fred', age: 30});
       expect(reducer(initialState, {type: 'ACTION_B', payload: {age: 40}})).to.eql({name: 'Bob', age: 40});
     })
