@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 
 import {updateMessage, updateMessageAsync} from 'actions'
 
+import FormView from 'views/Form'
+
 class HomeView extends React.Component {
   constructor(props) {
     super(props);
@@ -44,6 +46,7 @@ class HomeView extends React.Component {
         </select>
         <button onClick={this._clearMessage.bind(this)}>Clear Message</button>
         <button onClick={this._updateAsyncMessage.bind(this)}>Update Async</button>
+        <FormView/>
       </div>
     );
   }
