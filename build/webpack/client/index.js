@@ -57,6 +57,10 @@ config.module.loaders.push(
       'autoprefixer?browsers=last 2 version',
       'sass-loader?includePaths[]=' + projectConfig.inSrc('styles')
     ]
+  },
+  {
+    test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+    loader: 'file?name=fonts/[name].[ext]'
   }
 );
 

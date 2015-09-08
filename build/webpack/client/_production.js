@@ -6,7 +6,7 @@ module.exports = function makeClientProductionConfig(config) {
     new ExtractTextPlugin('[name].[contenthash].css')
   );
 
-  config.module.loaders = config.module.loaders.map(function(loader) {
+  config.module.loaders = config.module.loaders.map(function (loader) {
 
     // Extract CSS to a file
     if (/css/.test(loader.test)) {

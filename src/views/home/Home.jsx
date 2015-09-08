@@ -5,8 +5,6 @@ import {connect} from 'react-redux';
 
 import {updateMessage, updateMessageAsync} from 'actions'
 
-import FormView from 'views/Form'
-
 class HomeView extends React.Component {
   constructor(props) {
     super(props);
@@ -35,8 +33,8 @@ class HomeView extends React.Component {
 
   render() {
     return (
-      <div className='view view--home container'>
-        <h1 className={'text-center ' + styles.private}>{this.props.sample.message}</h1>
+      <div>
+        <h1 className={styles.private}>{this.props.sample.message}</h1>
         <input type='text' ref='inputText' value={this.props.sample.inputValue}
                onChange={this._updateInputTextHandler.bind(this)}/>
         <select ref='asyncDelaySelect'>
@@ -46,7 +44,9 @@ class HomeView extends React.Component {
         </select>
         <button onClick={this._clearMessage.bind(this)}>Clear Message</button>
         <button onClick={this._updateAsyncMessage.bind(this)}>Update Async</button>
-        <FormView/>
+        <div>
+          <p>This should be text in Roboto font</p>
+        </div>
       </div>
     );
   }

@@ -15,7 +15,7 @@ export default class ClientApp extends React.Component {
     super();
   }
 
-  renderDevTools() {
+  static renderDevTools() {
     return (
       <DebugPanel top left bottom key='debugPanel'>
         <DevTools store={store} monitor={LogMonitor}/>
@@ -40,7 +40,7 @@ export default class ClientApp extends React.Component {
   render() {
     return (
       <div>
-        {__DEBUG__ && __DEV_TOOLS__ && this.renderDevTools()}
+        {__DEBUG__ && __DEV_TOOLS__ && ClientApp.renderDevTools()}
         <Provider store={store}>
           {() => this.renderRouter()}
         </Provider>

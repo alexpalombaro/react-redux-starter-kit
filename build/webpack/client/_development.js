@@ -5,7 +5,7 @@ module.exports = function makeClientDevelopmentConfig(config) {
     'webpack/hot/dev-server'
   );
 
-  config.module.loaders = config.module.loaders.map(function(loader) {
+  config.module.loaders = config.module.loaders.map(function (loader) {
     if (/js/.test(loader.test)) {
       loader.loaders.unshift('react-hot');
     }
