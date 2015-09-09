@@ -8,8 +8,8 @@ const config = require('../../config');
 
 if (typeof name !== 'string' || !name.match(/^[A-Z]([A-Z]|[a-z])+$/)) {
   console.error('Missing valid view name.' +
-    ' Ensure name starts with a capital letter and is a string.' +
-    ' Ie node createView.js MyView');
+    ' Ensure name starts with a capital letter and is a string,' +
+    ' e.g. node createView.js MyView');
   process.exit(9);
 }
 
