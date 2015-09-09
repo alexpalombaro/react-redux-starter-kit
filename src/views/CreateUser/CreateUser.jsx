@@ -13,8 +13,7 @@ class CreateUserView extends React.Component {
 
   render() {
     return (
-      <div className='view view--home container'>
-      </div>
+      <div></div>
     );
   }
 }
