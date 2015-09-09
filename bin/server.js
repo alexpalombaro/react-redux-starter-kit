@@ -1,7 +1,7 @@
 require('babel/register');
 
 const server = require('../server'),
-      config = require('../config');
+  config = require('../config');
 
 const port = config.get('server_port');
 

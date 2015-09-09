@@ -26,7 +26,7 @@ class HomeView extends React.Component {
   }
 
   _updateAsyncMessage() {
-    var select = React.findDOMNode(this.refs.asyncDelaySelect);
+    var select = this.refs.asyncDelaySelect;
     this.props.dispatch(updateMessageAsync('Updated message', select.value));
     console.log(styles);
   }
@@ -35,7 +35,7 @@ class HomeView extends React.Component {
     return (
       <div>
         <h1 className={styles.private}>{this.props.sample.message}</h1>
-        <input type='text' ref='inputText' value={this.props.sample.inputValue}
+        <input type='text' value={this.props.sample.inputValue}
                onChange={this._updateInputTextHandler.bind(this)}/>
         <select ref='asyncDelaySelect'>
           <option value='1000'>1 second</option>

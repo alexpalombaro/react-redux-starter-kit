@@ -2,16 +2,16 @@
 // Credit to https://github.com/koajs/koa-gzip
 // Package is unmaintained so porting it for maintainability.
 // ------------------------------------
-import zlib     from 'zlib';
+import zlib from 'zlib';
 import thunkify from 'thunkify';
 
 const gzip = thunkify(zlib.gzip);
 
-export default function createGzipMiddleware (options) {
+export default function createGzipMiddleware(options) {
   options = options || {};
   options.minLength = options.minLength || 150;
 
-  return function *gzipMiddleware (next) {
+  return function *gzipMiddleware(next) {
     var body, buffer;
 
     yield next;

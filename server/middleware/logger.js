@@ -1,4 +1,4 @@
-export default function *loggerMiddleware (next) {
+export default function *loggerMiddleware(next) {
   const start = new Date();
 
   yield next;

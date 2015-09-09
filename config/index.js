@@ -1,7 +1,9 @@
+/* eslint-disable no-process-env */
+
 process.env.NODE_ENV = (process.env.NODE_ENV || 'development').trim();
 
-import path     from 'path';
-import { argv } from 'yargs';
+import path from 'path';
+import {argv} from 'yargs';
 
 const config = new Map();
 
@@ -10,14 +12,14 @@ const config = new Map();
 // ------------------------------------
 config.set('env', process.env.NODE_ENV);
 config.set('globals', {
-  'process.env'  : {
-    'NODE_ENV' : JSON.stringify(config.get('env'))
+  'process.env': {
+    'NODE_ENV': JSON.stringify(config.get('env'))
   },
-  'NODE_ENV'     : config.get('env'),
-  '__DEV__'      : config.get('env') === 'development',
-  '__PROD__'     : config.get('env') === 'production',
-  '__DEBUG__'    : !!argv.debug,
-  '__DEBUG_NW__' : !!argv.nw
+  'NODE_ENV': config.get('env'),
+  '__DEV__': config.get('env') === 'development',
+  '__PROD__': config.get('env') === 'production',
+  '__DEBUG__': !!argv.debug,
+  '__DEBUG_NW__': !!argv.nw
 });
 
 // ------------------------------------
@@ -38,7 +40,7 @@ config.set('webpack_public_path',
 // Project
 // ------------------------------------
 config.set('path_project', path.resolve(__dirname, '../'));
-config.set('dir_src',  'client');
+config.set('dir_src', 'client');
 config.set('dir_dist', 'dist');
 
 config.set('vendor_dependencies', [
@@ -55,30 +57,27 @@ config.set('vendor_dependencies', [
 // Utilities
 // ------------------------------------
 const paths = (() => {
-  const base    = [config.get('path_project')],
-        resolve = path.resolve;
+  const base = [config.get('path_project')],
+    resolve = path.resolve;
 
   const project = (...args) => resolve.apply(resolve, [...base, ...args]);
 
   return {
-    project : project,
-    src     : project.bind(null, config.get('dir_src')),
-    dist    : project.bind(null, config.get('dir_dist'))
+    project: project,
+    src: project.bind(null, config.get('dir_src')),
+    dist: project.bind(null, config.get('dir_dist'))
   };
 })();
 
 config.set('utils_paths', paths);
 config.set('utils_aliases', [
   'actions',
-  'components',
-  'constants',
   'containers',
-  'dispatchers',
+  'globals',
   'layouts',
-  'models',
+  'middleware',
   'reducers',
   'routes',
-  'services',
   'stores',
   'styles',
   'utils',

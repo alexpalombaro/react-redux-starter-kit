@@ -1,24 +1,24 @@
-import React          from 'react';
-import ReactDOM       from 'react-dom/server';
-import Router         from 'react-router';
-import Location       from 'react-router/lib/Location';
-import routes         from '../routes';
-import Root           from 'containers/Root';
+import React from 'react';
+import ReactDOM from 'react-dom/server';
+import Router from 'react-router';
+import Location from 'react-router/lib/Location';
+import routes from '../routes';
+import Root from 'containers/Root';
 import configureStore from 'stores';
 
 let _store;
 
-export function getStoreState () {
+export function getStoreState() {
   return new Promise((resolve) => resolve(_store.getState()));
 }
 
-export function render (initialRouterState, initialStoreState) {
+export function render(initialRouterState, initialStoreState) {
   return new Promise((resolve, reject) => {
     try {
       _store = configureStore(initialStoreState);
 
       const rendered = ReactDOM.renderToString(
-        <Root initialRouterState={initialRouterState} store={_store} />
+        <Root initialRouterState={initialRouterState} store={_store}/>
       );
 
       resolve(rendered);
@@ -28,7 +28,7 @@ export function render (initialRouterState, initialStoreState) {
   });
 }
 
-export function route (request) {
+export function route(request) {
   return new Promise((resolve, reject) => {
     const location = new Location(request.path, request.query);
 

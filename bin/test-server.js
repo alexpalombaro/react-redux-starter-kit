@@ -1,7 +1,7 @@
 require('babel/register');
 
-const server  = require('../server'),
-      request = require('supertest').agent(server.listen());
+const server = require('../server'),
+  request = require('supertest').agent(server.listen());
 
 describe('Koa Server', function () {
   describe('GET /', function () {

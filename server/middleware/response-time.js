@@ -1,4 +1,4 @@
-export default function *responseTimeMiddleware (next) {
+export default function *responseTimeMiddleware(next) {
   const start = new Date();
 
   yield next;

@@ -15,7 +15,7 @@
     "test:server": "mocha --harmony bin/test-server",
     "deploy": "npm run test:unit && npm run compile && npm run test:server",
     "server:start": "node --harmony bin/server",
-    "server:dev": "nodemon --harmony --watch server bin/server"
+    "server:dev": "nodemon --harmony --watch server bin/server",
     "view:create": "node --harmony ./build/utils/createView.js"
   },
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
@@ -38,6 +38,7 @@
     "autoprefixer-loader": "^2.0.0",
     "babel-eslint": "^4.1.1",
     "babel-loader": "^5.0.0",
+    "babel-plugin-react-transform": "^1.0.2",
     "babel-runtime": "^5.8.20",
     "bootstrap-sass": "^3.3.5",
     "chai": "^3.2.0",

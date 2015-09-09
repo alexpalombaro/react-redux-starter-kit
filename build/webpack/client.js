@@ -3,67 +3,71 @@ import config  from '../../config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const paths   = config.get('utils_paths'),
-      globals = config.get('globals');
+const paths = config.get('utils_paths'),
+  globals = config.get('globals');
 
 const webpackConfig = {
-  name    : 'client',
-  target  : 'web',
-  devtool : 'inline-source-map',
-  entry   : {
-    app : [
+  name: 'client',
+  target: 'web',
+  devtool: 'inline-source-map',
+  entry: {
+    app: [
       paths.src('entry-points/client')
     ]
   },
-  output : {
-    filename   : '[name].[hash].js',
-    path       : paths.dist('client'),
-    publicPath : '/'
+  output: {
+    filename: '[name].[hash].js',
+    path: paths.dist('client'),
+    publicPath: '/'
   },
-  plugins : [
+  plugins: [
     new webpack.DefinePlugin(config.get('globals')),
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin('[name].[contenthash].css'),
     new HtmlWebpackPlugin({
-      template : paths.src('index.html'),
-      hash     : true,
-      filename : 'index.html',
-      minify   : globals.__PROD__,
-      inject   : 'body'
+      template: paths.src('index.html'),
+      hash: true,
+      filename: 'index.html',
+      minify: globals.__PROD__,
+      inject: 'body'
     })
   ],
-  resolve : {
-    extensions : ['', '.js', '.jsx'],
-    alias : config.get('utils_aliases')
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    alias: config.get('utils_aliases')
   },
-  module : {
-    preLoaders : [
+  module: {
+    preLoaders: [
       {
-        test : /\.(js|jsx)$/,
-        loaders : ['eslint-loader'],
-        include : paths.project(config.get('dir_src'))
+        test: /\.(js|jsx)$/,
+        loaders: ['eslint-loader'],
+        include: paths.project(config.get('dir_src'))
       }
     ],
-    loaders : [
+    loaders: [
       {
-        test : /\.(js|jsx)$/,
-        include :  paths.project(config.get('dir_src')),
-        loaders : ['babel?optional[]=runtime']
+        test: /\.(js|jsx)$/,
+        include: paths.project(config.get('dir_src')),
+        loaders: ['babel?optional[]=runtime']
       },
       {
-        test    : /\.scss$/,
-        loader : ExtractTextPlugin.extract('style-loader', [
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', [
           'css-loader',
           'autoprefixer?browsers=last 2 version',
           'sass-loader?includePaths[]=' + paths.src('styles')
         ].join('!'))
+      },
+      {
+        test: /\.eot$|\.svg$|\.ttf$|\.woff2?$/,
+        loader: 'file?name=fonts/[name].[ext]'
       }
     ]
   },
-  eslint : {
-    configFile  : paths.project('.eslintrc'),
-    failOnError : globals.__PROD__,
-    emitWarning : globals.__DEV__
+  eslint: {
+    configFile: paths.project('.eslintrc'),
+    failOnError: globals.__PROD__,
+    emitWarning: globals.__DEV__
   }
 };
 
@@ -99,12 +103,12 @@ if (globals.__DEV__) {
 if (globals.__PROD__) {
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
-      output : {
-        'comments'  : false
+      output: {
+        'comments': false
       },
-      compress : {
-        'unused'    : true,
-        'dead_code' : true
+      compress: {
+        'unused': true,
+        'dead_code': true
       }
     })
   );
