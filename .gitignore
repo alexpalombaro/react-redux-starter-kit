@@ -11,6 +11,7 @@ dist
 
 ## Directory-based project format:
 .idea/
+.tmp/
 
 ## Babel output files
 *-compiled.js

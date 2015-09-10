@@ -1,3 +1,5 @@
+/* globals describe it*/
+
 require('babel/register');
 
 const server = require('../server'),
@@ -6,15 +8,11 @@ const server = require('../server'),
 describe('Koa Server', function () {
   describe('GET /', function () {
     it('Should respond with a 200.', function (done) {
-      request
-        .get('/')
-        .expect(200, done);
+      request.get('/').expect(200, done);
     });
 
     it('Should respond with sample welcome text.', function (done) {
-      request
-        .get('/')
-        .expect(/Welcome to the React Redux Starter Kit/, done);
+      request.get('/').expect(/Welcome to the React Redux Starter Kit/, done);
     });
   });
 });
