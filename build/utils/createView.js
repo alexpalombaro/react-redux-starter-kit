@@ -1,3 +1,5 @@
+require('babel/register');
+
 const fs = require('fs');
 const path = require('path');
 const args = require('yargs').argv;
@@ -40,7 +42,7 @@ new Promise((resolve, reject) => {
     result.forEach((data) => {
       var fileData = data.fileData.replace(/\$\{NAME\}/g, name);
       var fileName = resolveFileName(data.fileName);
-      var filePath = path.resolve(config.inSrc('views'), name, fileName);
+      var filePath = path.resolve(config.get('utils_paths').src('views'), name, fileName);
       var length = result.length;
       var directory = path.dirname(filePath);
       if (!fs.existsSync(path.dirname(filePath))) {
