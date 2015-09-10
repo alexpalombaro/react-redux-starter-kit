@@ -4,7 +4,7 @@
   "description": "Get started with React, Redux, React-Router, and Koa!",
   "main": "index.js",
   "scripts": {
-    "clean": "rmdir /s /q dist",
+    "clean": "rmdir /s /q dist .tmp",
     "compile": "webpack",
     "start": "npm run dev",
     "dev": "node --harmony bin/webpack-dev-server",
@@ -43,6 +43,7 @@
     "bootstrap-sass": "^3.3.5",
     "chai": "^3.2.0",
     "css-loader": "^0.17.0",
+    "del": "^2.0.2",
     "eslint": "^1.0.0",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.3.1",

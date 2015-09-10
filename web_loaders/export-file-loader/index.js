@@ -5,7 +5,7 @@ const path = require('path');
 const config = require('../../config');
 
 const paths = config.get('utils_paths');
-const dir = paths.project('.tmp');
+const dir = paths.project(config.get('dir_temp'));
 
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);

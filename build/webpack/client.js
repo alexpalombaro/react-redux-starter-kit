@@ -101,20 +101,13 @@ if (globals.__DEV__) {
 }
 
 if (globals.__DEBUG_JS__) {
-  const resolveLoader = webpackConfig.resolveLoader || {};
-  let alias = resolveLoader.alias || {};
-  alias = {...alias, 'export-file': paths.project('build/webpack/export-file-loader.js')};
-  resolveLoader.alias = alias;
-  webpackConfig.resolveLoader = resolveLoader;
-
-  const module = webpackConfig.module || {};
-  const postLoaders = module.postLoaders || [];
+  const postLoaders = webpackConfig.module.postLoaders || [];
   postLoaders.push({
     test: /\.js/,
     include: paths.project(config.get('dir_src')),
     loader: 'export-file'
   });
-  webpackConfig.module = {...module, postLoaders};
+  webpackConfig.module.postLoaders = postLoaders;
 }
 
 if (globals.__PROD__) {
