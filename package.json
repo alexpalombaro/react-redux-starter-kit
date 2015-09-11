@@ -16,7 +16,7 @@
     "deploy": "npm run test:unit && npm run compile && npm run test:server",
     "server:start": "node --harmony bin/server",
     "server:dev": "nodemon --harmony --watch server bin/server",
-    "view:create": "node --harmony ./build/utils/createView.js"
+    "view:create": "node --harmony build/utils/createView.js"
   },
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",

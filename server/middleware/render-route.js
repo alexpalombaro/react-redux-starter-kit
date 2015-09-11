@@ -18,7 +18,7 @@ const template = fs.readFileSync(paths.dist('client/index.html'), 'utf-8')
 );
 
 // TODO: should probably use a tagged template
-function renderIntoTemplate(template, content, initialState) {
+function renderIntoTemplate(content, initialState) {
   return template
     .replace('${content}', content)
     .replace('${initialState}', JSON.stringify(initialState));
@@ -37,7 +37,7 @@ export default function makeRenderRouteMiddleware(middleware) {
       const rendered = yield render(routerState, initialState);
       const storeState = yield getStoreState();
 
-      this.body = renderIntoTemplate(template, rendered, storeState);
+      this.body = renderIntoTemplate(rendered, storeState);
     } catch (e) {
       console.log(e);
       yield next;
