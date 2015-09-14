@@ -31,4 +31,5 @@ function getInitialState() {
 
 app.use(require('./middleware/render-route')(getInitialState));
 
+
 export default app;

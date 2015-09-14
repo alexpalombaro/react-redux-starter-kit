@@ -1,11 +1,11 @@
-import fs        from 'fs';
-import config    from '../../config';
-import React     from 'react';
-import ReactDOM  from 'react-dom/server';
+import fs from 'fs';
+import config from '../../config';
+import React from 'react';
+import ReactDOM from 'react-dom/server';
 
 const paths = config.get('utils_paths');
 
-const { Root, route, configureStore } = require(paths.dist('server'));
+const {Root, route, configureStore} = require(paths.dist('server'));
 
 // ------------------------------------
 // Rendering Setup
@@ -33,8 +33,8 @@ function renderIntoTemplate(content, initialState) {
 // ------------------------------------
 // Rendering Middleware
 // ------------------------------------
-export default function makeRenderRouteMiddleware (middleware) {
-  return function *renderRouteMiddleware (next) {
+export default function makeRenderRouteMiddleware(middleware) {
+  return function *renderRouteMiddleware(next) {
     let initialState;
 
     if (typeof middleware === 'function') {
@@ -42,12 +42,12 @@ export default function makeRenderRouteMiddleware (middleware) {
     }
 
     try {
-      const props  = yield route(this.request.url);
+      const props = yield route(this.request.url);
       const markup = ReactDOM.renderToString(
-        <Root routingContext={props} store={configureStore(initialState)} />
+        <Root routingContext={props} store={configureStore(initialState)}/>
       );
 
-      this.body = renderIntoTemplate(template, markup, initialState);
+      this.body = renderIntoTemplate(markup, initialState);
     } catch (e) {
       console.log(e);
       yield next;

@@ -1,11 +1,11 @@
-import React        from 'react';
-import { Provider } from 'react-redux';
-import { Router }   from 'react-router';
-import routes       from 'routes';
-import invariant    from 'invariant';
-import { RoutingContext } from 'react-router';
-import { createDevToolsWindow } from 'utils';
-import { DevTools, LogMonitor, DebugPanel } from 'redux-devtools/lib/react';
+import React from 'react';
+import {Provider} from 'react-redux';
+import {Router} from 'react-router';
+import routes from 'routes';
+import invariant from 'invariant';
+import {RoutingContext} from 'react-router';
+import {createDevToolsWindow} from 'utils';
+import {DevTools, LogMonitor, DebugPanel} from 'redux-devtools/lib/react';
 
 export default class Root extends React.Component {
 
@@ -35,9 +35,8 @@ export default class Root extends React.Component {
     }
   }
 
-  renderRouter () {
-    invariant(
-      this.props.routingContext || this.props.routerHistory,
+  renderRouter() {
+    invariant(this.props.routingContext || this.props.routerHistory,
       '<Root /> needs either a routingContext or routerHistory to render.'
     );
 

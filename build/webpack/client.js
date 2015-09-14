@@ -20,9 +20,9 @@ const webpackConfig = {
     path: paths.dist('client'),
     publicPath: '/'
   },
-  plugins : [
+  plugins: [
     new webpack.DefinePlugin(Object.assign(config.get('globals'), {
-      __CLIENT__ : true
+      __CLIENT__: true
     })),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -39,16 +39,16 @@ const webpackConfig = {
     extensions: ['', '.js', '.jsx'],
     alias: config.get('utils_aliases')
   },
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       {
         test: /\.jsx?$/,
         include: paths.project(config.get('dir_src')),
         loaders: ['babel?optional[]=runtime']
       },
       {
-        test    : /\.scss$/,
-        loaders : [
+        test: /\.scss$/,
+        loaders: [
           'style-loader',
           'css-loader',
           'autoprefixer?browsers=last 2 version',
@@ -143,9 +143,9 @@ if (
 ) {
   webpackConfig.module.preLoaders = [
     {
-      test : /\.(js|jsx)$/,
-      loaders : ['eslint-loader'],
-      include : paths.project(config.get('dir_src'))
+      test: /\.(js|jsx)$/,
+      loaders: ['eslint-loader'],
+      include: paths.project(config.get('dir_src'))
     }
   ];
 }
