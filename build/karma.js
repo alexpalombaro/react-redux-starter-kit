@@ -15,15 +15,15 @@ function makeDefaultConfig() {
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './' + KARMA_ENTRY_FILE
     ],
-    singleRun: globals.__PROD__,
-    frameworks: ['chai', 'mocha'],
-    preprocessors: preprocessors,
-    reporters: ['spec'],
-    browsers: ['PhantomJS'],
-    webpack: {
-      devtool: 'inline-source-map',
-      resolve: webpackConfig.resolve,
-      plugins: webpackConfig.plugins
+    singleRun  : globals.__PROD__,
+    frameworks : ['mocha', 'sinon-chai'],
+    preprocessors : preprocessors,
+    reporters : ['spec'],
+    browsers : ['PhantomJS'],
+    webpack : {
+      devtool : 'inline-source-map',
+      resolve : webpackConfig.resolve,
+      plugins : webpackConfig.plugins
         .filter(p => !p.__KARMA_IGNORE__),
       module: {
         loaders: webpackConfig.module.loaders
@@ -35,7 +35,7 @@ function makeDefaultConfig() {
     plugins: [
       require('karma-webpack'),
       require('karma-mocha'),
-      require('karma-chai'),
+      require('karma-sinon-chai'),
       require('karma-coverage'),
       require('karma-phantomjs-launcher'),
       require('karma-spec-reporter')

@@ -5,9 +5,7 @@ React Redux Starter Kit
 
 Starter kit to get you up and running with a bunch of awesome new technologies. This boilerplate provides server-side rendering of your routes (by way of Koa and react-router), and the sample application gives you a quick demo of Redux. All of this sits on top of a configurable, feature-rich Webpack build system that's already setup to provide unit testing, linting, hot reloading, sass imports with CSS extraction, and a whole lot more. Check out the full feature list below!
 
-Redux, React-Router, and React are constantly releasing new API changes. If you'd like to help keep this boilerplate up to date, please check out the [current todo list](https://github.com/davezuko/react-redux-starter-kit/blob/master/docs/todo.md) or create a new issue if you think this repo is missing something!
-
-**NOTE**: In the past, this project came bundled with a sample Todo application to showcase the starter kit in action. The example has since been moved out of master so that you have more of a clean slate to work with, but you can still [find it in its own branch](https://github.com/davezuko/react-redux-starter-kit/tree/example/todo-application)!
+Redux, React-Router, and React are constantly releasing new API changes. If you'd like to help keep this boilerplate up to date, please contribute or create a new issue if you think this starter kit is missing something!
 
 Table of Contents
 -----------------
@@ -25,26 +23,27 @@ Table of Contents
 Requirements
 ------------
 
-Node `^0.12.0` or io.js `^2.0.0`.
+Node (`^4.0.0` | `^0.12.0`) or io.js `^2.0.0`.
 
 Features
 --------
 
-* [React](https://github.com/facebook/react) (`0.14.0-beta3`)
-  * Includes react-addons-test-utils (`0.14.0-beta3`)
-* [react-router](https://github.com/rackt/react-router) (`1.0.0-beta`)
-* [Redux](https://github.com/gaearon/redux) (`2.0.0`)
+* [React](https://github.com/facebook/react) (`0.14.0-rc1`)
+  * Includes react-addons-test-utils (`0.14.0-rc1`)
+* [react-router](https://github.com/rackt/react-router) (`1.0.0-rc1`)
+* [Redux](https://github.com/gaearon/redux) (`^3.0.0`)
   * react-redux
   * redux-devtools (enabled with `--debug` flag)
     * or try `npm run dev:debugnw` to display it in a separate window.
 * [Koa](https://github.com/koajs/koa)
 * [Immutable.js](https://github.com/facebook/immutable-js)
-* Karma
-  * Mocha w/ Chai
+* [Karma](https://github.com/karma-runner/karma)
+  * Mocha w/ Chai and Sinon-Chai
   * PhantomJS
 * [Babel](https://github.com/babel/babel)
-  * react-transform-webpack-hmr for hot reloading
-  * configured to use babel runtime rather than inline transformations
+  * `react-transform-webpack-hmr` for hot reloading
+  * `react-transform-catch-errors` for more visible error reporting
+  * Uses babel runtime rather than inline transformations
 * [Webpack](https://github.com/webpack/webpack)
   * Separate server and client bundles
     * Client bundle splits app code from vendor dependencies
@@ -103,6 +102,7 @@ You can redefine which packages to treat as vendor dependencies by editing `vend
 
 ```js
 [
+  'history',
   'immutable',
   'react',
   'react-redux',

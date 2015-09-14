@@ -20,8 +20,11 @@ const webpackConfig = {
     path: paths.dist('client'),
     publicPath: '/'
   },
-  plugins: [
-    new webpack.DefinePlugin(config.get('globals')),
+  plugins : [
+    new webpack.DefinePlugin(Object.assign(config.get('globals'), {
+      __CLIENT__ : true
+    })),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin('[name].[contenthash].css'),
     new HtmlWebpackPlugin({
@@ -36,27 +39,21 @@ const webpackConfig = {
     extensions: ['', '.js', '.jsx'],
     alias: config.get('utils_aliases')
   },
-  module: {
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['eslint-loader'],
-        include: paths.project(config.get('dir_src'))
-      }
-    ],
-    loaders: [
+  module : {
+    loaders : [
       {
         test: /\.jsx?$/,
         include: paths.project(config.get('dir_src')),
         loaders: ['babel?optional[]=runtime']
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', [
+        test    : /\.scss$/,
+        loaders : [
+          'style-loader',
           'css-loader',
           'autoprefixer?browsers=last 2 version',
           'sass-loader?includePaths[]=' + paths.src('styles')
-        ].join('!'))
+        ]
       },
       {
         test: /\.eot$|\.svg$|\.ttf$|\.woff2?$/,
@@ -111,6 +108,19 @@ if (globals.__DEBUG_JS__) {
 }
 
 if (globals.__PROD__) {
+
+  // Compile CSS to its own file in production.
+  webpackConfig.module.loaders = webpackConfig.module.loaders.map(loader => {
+    if (/css/.test(loader.test)) {
+      const [first, ...rest] = loader.loaders;
+
+      loader.loader = ExtractTextPlugin.extract(first, rest.join('!'));
+      delete loader.loaders;
+    }
+
+    return loader;
+  });
+
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       output: {
@@ -122,6 +132,22 @@ if (globals.__PROD__) {
       }
     })
   );
+}
+
+// ------------------------------------
+// Optional Configuration
+// ------------------------------------
+if (
+  !globals.__DEV__ ||
+  (globals.__DEV__ && config.get('webpack_lint_in_dev'))
+) {
+  webpackConfig.module.preLoaders = [
+    {
+      test : /\.(js|jsx)$/,
+      loaders : ['eslint-loader'],
+      include : paths.project(config.get('dir_src'))
+    }
+  ];
 }
 
 export default webpackConfig;

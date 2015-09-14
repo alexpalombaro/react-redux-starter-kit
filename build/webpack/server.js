@@ -17,8 +17,11 @@ const webpackConfig = {
     path: paths.dist('server'),
     libraryTarget: 'commonjs2'
   },
-  plugins: [
-    new webpack.DefinePlugin(config.get('globals')),
+  plugins : [
+    new webpack.DefinePlugin(Object.assign(config.get('globals'), {
+      __SERVER__ : true
+    })),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin()
   ],
   resolve: {
