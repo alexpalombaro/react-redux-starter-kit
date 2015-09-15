@@ -5,8 +5,6 @@ import {connect} from 'react-redux';
 
 import {updateMessage, updateMessageAsync} from 'actions'
 
-import {CreateUserView} from 'views';
-
 class HomeView extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +47,6 @@ class HomeView extends React.Component {
         <div>
           <p>This should be text in Roboto font</p>
         </div>
-        {this.props.children}
       </div>
     );
   }

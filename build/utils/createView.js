@@ -8,6 +8,8 @@ const name = args._[0];
 
 const config = require('../../config');
 
+const connect = !!args.connect;
+
 if (typeof name !== 'string' || !name.match(/^[A-Z]([A-Z]|[a-z])+$/)) {
   console.error('Missing valid view name.' +
     ' Ensure name starts with a capital letter and is a string,' +
@@ -21,11 +23,15 @@ new Promise((resolve, reject) => {
   fs.readdir(dir, (err, files) => err ? reject(err) : resolve(files))
 }).then((result) => {
   return new Promise((resolve) => {
-    var fileList = [];
+    var fileList = [], total = result.length;
     result.forEach((filename) => {
       fs.readFile(path.resolve(dir, filename), 'utf-8', (err, data) => {
+        if (!connect && /ViewConnect__js/.test(filename) || connect && /View__js/.test(filename)) {
+          console.log(filename, connect);
+          return total--;
+        }
         fileList.push({fileName: filename, fileData: err || data});
-        if (fileList.length === result.length) {
+        if (fileList.length === total) {
           resolve(fileList);
         }
       });
