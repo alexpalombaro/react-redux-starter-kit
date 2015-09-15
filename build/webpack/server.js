@@ -45,7 +45,8 @@ const webpackConfig = {
       {
         test: /\.scss$/,
         loaders: [
-          'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]',
+          'css/locals?module',
+          'autoprefixer?browsers=last 2 version',
           'sass-loader?includePaths[]=' + paths.src('styles')
         ]
       }
