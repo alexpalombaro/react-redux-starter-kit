@@ -1,0 +1,15 @@
+import {createReducer} from 'utils';
+import {actionTypes} from 'globals';
+
+//
+// Reducer state
+// -----------------------------------------------------------------------------
+const initialState = {
+};
+
+
+//
+// Reducer action mapping
+// -----------------------------------------------------------------------------
+export default createReducer(initialState, {
+})

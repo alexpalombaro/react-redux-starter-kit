@@ -30,7 +30,7 @@ if (typeof name !== 'string' || !name.match(/^[A-Z]([A-Z]|[a-z])+$/)) {
 // Core functionality
 // -----------------------------------------------------------------------------
 
-const dir = path.resolve(__dirname, '__templates__');
+const dir = path.resolve(__dirname, '__templates__/view');
 
 new Promise((resolve, reject) => {
   fs.readdir(dir, (err, files) => err ? reject(err) : resolve(files))

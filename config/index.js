@@ -84,7 +84,7 @@ config.set('utils_aliases', [
   'middleware',
   'reducers',
   'routes',
-  'stores',
+  'store',
   'styles',
   'utils',
   'views'

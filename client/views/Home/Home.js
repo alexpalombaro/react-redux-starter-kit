@@ -34,8 +34,8 @@ class HomeView extends React.Component {
   render() {
     return (
       <div>
-        <h1 className={styles.private}>{this.props.sample.message}</h1>
-        <input type='text' value={this.props.sample.inputValue}
+        <h1 className={styles.private}>{this.props.user.firstName}</h1>
+        <input type='text' value={this.props.user.firstName}
                onChange={this._updateInputTextHandler}/>
         <select ref='asyncDelaySelect'>
           <option value='1000'>1 second</option>

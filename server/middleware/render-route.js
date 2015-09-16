@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/server';
 
 const paths = config.get('utils_paths');
 
-const {Root, route, configureStore} = require(paths.dist('server'));
+const {Root, route, createStore} = require(paths.dist('server'));
 
 // ------------------------------------
 // Rendering Setup
@@ -44,7 +44,7 @@ export default function makeRenderRouteMiddleware(middleware) {
     try {
       const props = yield route(this.request.url);
       const markup = ReactDOM.renderToString(
-        <Root routingContext={props} store={configureStore(initialState)}/>
+        <Root routingContext={props} store={createStore(initialState)}/>
       );
 
       this.body = renderIntoTemplate(markup, initialState);

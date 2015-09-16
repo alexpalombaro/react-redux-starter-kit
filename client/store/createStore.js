@@ -1,6 +1,6 @@
-import {applyMiddleware, createStore, combineReducers, compose} from 'redux';
+import {applyMiddleware, createStore, compose} from 'redux';
 import {devTools} from 'redux-devtools';
-import * as reducers from 'reducers';
+import reducers from 'reducers';
 
 import {actionDelay} from 'middleware';
 
@@ -17,7 +17,7 @@ if (__DEBUG__) {
 }
 
 export default function configureStore(initialState) {
-  const store = finalStore(combineReducers(reducers), initialState);
+  const store = finalStore(reducers, initialState);
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {

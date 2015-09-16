@@ -3,7 +3,7 @@ import {match} from 'react-router';
 import createLocation from 'history/lib/createLocation';
 
 export {default as Root} from 'containers/Root';
-export {default as configureStore} from 'stores';
+export {default as createStore} from 'store';
 
 export function route(url) {
   const location = createLocation(url);
