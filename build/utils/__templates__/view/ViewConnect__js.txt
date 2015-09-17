@@ -1,8 +1,12 @@
-import styles from './${NAME}.scss';
+import {style} from './${NAME}.scss';
 
 import React from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+//
+// Component
+// -----------------------------------------------------------------------------
 class ${NAME}View extends React.Component {
   constructor(props) {
     super(props);
@@ -11,15 +15,30 @@ class ${NAME}View extends React.Component {
   static propTypes = {
   };
 
+  //
+  // Render
+  // -----------------------------------------------------------------------------
   render() {
     return (
-      <div>INSERT COMPONENT DATA</div>
+      <div className={style}>
+        <p>INSERT COMPONENT DATA</p>
+      </div>
     );
   }
 }
+
+//
+// Redux
+// -----------------------------------------------------------------------------
 
 function mapStateToProps(state) {
   return {...state};
 }
 
-export default connect(mapStateToProps)(${NAME}View);
+function mapDispatchToProps(dispatch) {
+  return {
+    // propsMethodName:bindActionCreators(action, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(${NAME}View);

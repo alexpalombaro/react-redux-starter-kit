@@ -2,9 +2,14 @@ import styles from './Home.scss';
 
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
+import {bindActionCreators} from 'redux';
 
-import {updateMessage, updateMessageAsync} from 'actions'
+import {UserEditAction} from 'actions';
 
+//
+// Component
+// -----------------------------------------------------------------------------
 class HomeView extends React.Component {
   constructor(props) {
     super(props);
@@ -17,25 +22,32 @@ class HomeView extends React.Component {
     })
   };
 
+  //
+  // Event handlers
+  // -----------------------------------------------------------------------------
+
   _clearMessage = () => {
-    this.props.dispatch(updateMessage(''));
   };
 
   _updateInputTextHandler = (e) => {
-    this.props.dispatch(updateMessage(e.target.value));
+    this.props.updateUserDetails({
+      firstName: e.target.value
+    })
   };
 
   _updateAsyncMessage = () => {
-    var select = this.refs.asyncDelaySelect;
-    this.props.dispatch(updateMessageAsync('Updated message', select.value));
-    console.log(styles);
+    //var select = this.refs.asyncDelaySelect;
+    //this.props.dispatch(updateMessageAsync('Updated message', select.value));
   };
 
+  //
+  // Render
+  // -----------------------------------------------------------------------------
   render() {
     return (
       <div>
-        <h1 className={styles.private}>{this.props.user.firstName}</h1>
-        <input type='text' value={this.props.user.firstName}
+        <h1 className={styles.private}>{this.props.firstName}</h1>
+        <input type='text' value={this.props.firstName}
                onChange={this._updateInputTextHandler}/>
         <select ref='asyncDelaySelect'>
           <option value='1000'>1 second</option>
@@ -46,14 +58,28 @@ class HomeView extends React.Component {
         <button onClick={this._updateAsyncMessage}>Update Async</button>
         <div>
           <p>This should be text in Roboto font</p>
+
+          <p>Click this <Link to='/edit'>link</Link> to go to the edit user page.</p>
         </div>
       </div>
     );
   }
 }
 
+//
+// Redux
+// -----------------------------------------------------------------------------
+
 function mapStateToProps(state) {
-  return {...state};
+  return {
+    firstName: state.user.firstName
+  }
 }
 
-export default connect(mapStateToProps)(HomeView);
+function mapDispatchToProps(dispatch) {
+  return {
+    updateUserDetails: bindActionCreators(UserEditAction.updateUserDetails, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);

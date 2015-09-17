@@ -150,7 +150,7 @@
     "no-trailing-spaces": 1,
     "no-underscore-dangle": 0,
     "no-unneeded-ternary": 2,
-    "object-curly-spacing": [1, "never"],
+    "object-curly-spacing": 0,
     "one-var": [0, {
       "var": "always",
       "let": "always",

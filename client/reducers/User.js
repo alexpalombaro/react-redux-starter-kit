@@ -1,5 +1,5 @@
 import {createReducer} from 'utils';
-import {actionTypes} from 'globals';
+import {ActionType} from 'actions';
 
 //
 // Reducer state
@@ -13,12 +13,19 @@ const initialState = {
   createdOn: null
 };
 
+//
+// Reducer methods
+// -----------------------------------------------------------------------------
+
+function validated(state) {
+}
+
 
 //
 // Reducer action mapping
 // -----------------------------------------------------------------------------
 export default createReducer(initialState, {
-  [actionTypes.UPDATE_MESSAGE]: (state, payload) => {
-    return {...state, firstName: payload.message};
+  [ActionType.UPDATE_USER]: (prevState, payload) => {
+    return {...prevState, ...payload};
   }
 })
