@@ -1,0 +1,13 @@
+// css-loader component styles
+:local(.style) {
+
+  margin: 0.5em;
+
+  input {
+    display: block;
+    margin-top: 0.4em;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
