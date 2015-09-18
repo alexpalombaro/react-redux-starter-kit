@@ -6,6 +6,8 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import {UserEditAction} from 'actions';
 
+import {ProgressBarView} from 'views';
+
 
 //
 // Component
@@ -14,7 +16,15 @@ class UserEditView extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.inputFields = [
+      {name: 'firstName', placeholder: 'First Name'},
+      {name: 'lastName', placeholder: 'Last Name'},
+      {name: 'email', placeholder: 'Email'},
+      {name: 'dob', type: 'date'}
+    ];
   }
+
 
   static propTypes = {
     firstName: React.PropTypes.string.isRequired,
@@ -27,20 +37,21 @@ class UserEditView extends React.Component {
   // Class methods
   // -----------------------------------------------------------------------------
 
-  _generateInputFields() {
-    const items = [
-      {name: 'firstName', placeholder: 'First Name'},
-      {name: 'lastName', placeholder: 'Last Name'},
-      {name: 'email', placeholder: 'Email'},
-      {name: 'dob', type: 'date'}
-    ];
-
-    return items.map(({ placeholder, name, type = 'text' }) => {
+  _generateInputFields():Array {
+    return this.inputFields.map(({ placeholder, name, type = 'text' }) => {
       return <input type={type} key={name} ref={name}
                     placeholder={placeholder}
                     value={this.props[name]}
                     onChange={this._inputFieldChangeHandler}/>
     })
+  }
+
+  _getProgress():Number {
+    const total = this.inputFields.filter((item) => {
+      return this.props[item.name].length;
+    });
+
+    return (total.length / this.inputFields.length) * 100;
   }
 
   //
@@ -64,6 +75,7 @@ class UserEditView extends React.Component {
     return (
       <div className={style}>
         {this._generateInputFields()}
+        <ProgressBarView progress={this._getProgress()} showText/>
         <Link to='/'>Home</Link>
       </div>
     );

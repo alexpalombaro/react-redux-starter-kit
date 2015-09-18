@@ -15,15 +15,15 @@ function makeDefaultConfig() {
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './' + KARMA_ENTRY_FILE
     ],
-    singleRun  : globals.__PROD__,
-    frameworks : ['mocha', 'sinon-chai'],
-    preprocessors : preprocessors,
-    reporters : ['spec'],
-    browsers : ['PhantomJS'],
-    webpack : {
-      devtool : 'inline-source-map',
-      resolve : webpackConfig.resolve,
-      plugins : webpackConfig.plugins
+    singleRun: globals.__PROD__,
+    frameworks: ['mocha', 'sinon-chai'],
+    preprocessors: preprocessors,
+    reporters: ['spec'],
+    browsers: ['PhantomJS'],
+    webpack: {
+      devtool: 'inline-source-map',
+      resolve: webpackConfig.resolve,
+      plugins: webpackConfig.plugins
         .filter(p => !p.__KARMA_IGNORE__),
       module: {
         loaders: webpackConfig.module.loaders
