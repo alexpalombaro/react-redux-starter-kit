@@ -17,7 +17,7 @@ class ProgressBarView extends React.Component {
 
   static propTypes = {
     progress: React.PropTypes.number.isRequired,
-    showText:React.PropTypes.bool.isRequired
+    showText: React.PropTypes.bool.isRequired
   };
 
   //
@@ -28,8 +28,8 @@ class ProgressBarView extends React.Component {
     return (
       <div className={style}>
         <div className='progress'>
-          <div className='progress-bar' role='progressbar' aria-valuenow={progress} aria-valuemax='100'
-               style={{width: `${progress}%`}}>
+          <div className='progress-bar' role='progressbar' aria-valuenow={progress}
+               aria-valuemax='100' style={{width: `${progress}%`}}>
             {showText ? `${progress}%` : null}
           </div>
         </div>

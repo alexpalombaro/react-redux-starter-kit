@@ -71,7 +71,6 @@ class UserEditView extends React.Component {
   // -----------------------------------------------------------------------------
 
   render() {
-    console.log('Rendering');
     return (
       <div className={style}>
         {this._generateInputFields()}

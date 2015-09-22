@@ -35,6 +35,8 @@ export function createDevToolsWindow(store) {
       <DebugPanel top right bottom left>
         <DevTools store={store} monitor={LogMonitor}/>
       </DebugPanel>
-    , win.document.getElementById('root'));
+      , win.document.getElementById('root'));
   }, 10);
+
+  return win;
 }
