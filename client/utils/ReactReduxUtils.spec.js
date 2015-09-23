@@ -1,5 +1,5 @@
 /*eslint-env browser, phantomjs, es6, mocha, jasmine*/
-/*eslint-disable no-unused-expressions*/
+/*eslint-disable no-unused-expressions, no-debugger*/
 
 import {
   createConstants,
