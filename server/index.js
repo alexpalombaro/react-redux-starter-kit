@@ -8,6 +8,7 @@ const app = koa();
 // ------------------------------------
 // Response Time Header and Logging
 // ------------------------------------
+app.use(require('./middleware/graphql'));
 app.use(require('./middleware/gzip')());
 app.use(require('./middleware/response-time'));
 app.use(require('./middleware/logger'));
