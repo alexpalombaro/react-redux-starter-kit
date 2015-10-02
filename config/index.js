@@ -90,4 +90,10 @@ config.set('utils_aliases', [
   'views'
 ].reduce((acc, x) => ((acc[x] = paths.src(x)) && acc), {}));
 
+config.set('modernizr', {
+  'feature-detects': [
+    'input'
+  ]
+});
+
 export default config;

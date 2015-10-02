@@ -5,7 +5,7 @@
   "main": "index.js",
   "engines": ">=4.0.0",
   "scripts": {
-    "clean": "rmdir /s /q dist .tmp",
+    "clean": "node bin/clean",
     "compile": "webpack",
     "start": "npm run dev",
     "dev": "node bin/webpack-dev-server",
@@ -30,6 +30,8 @@
     "invariant": "^2.1.0",
     "koa": "^1.0.0",
     "koa-static": "^1.4.9",
+    "modernizr": "^3.0.0",
+    "mongodb": "^2.0.44",
     "react": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
     "react-redux": "^2.0.0",

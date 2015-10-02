@@ -8,7 +8,6 @@ import {UserEditAction} from 'actions';
 
 import {ProgressBarView} from 'views';
 
-
 //
 // Component
 // -----------------------------------------------------------------------------
@@ -42,7 +41,7 @@ class UserEditView extends React.Component {
       return <input type={type} key={name} ref={name}
                     placeholder={placeholder}
                     value={this.props[name]}
-                    onChange={this._inputFieldChangeHandler}/>
+                    onChange={this._inputFieldChangeHandler}/>;
     })
   }
 

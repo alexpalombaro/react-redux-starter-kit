@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import config  from '../../config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import ModernizrPlugin from './plugins/modernizr';
 
 const paths = config.get('utils_paths'),
   globals = config.get('globals');
@@ -33,7 +34,8 @@ const webpackConfig = {
       filename: 'index.html',
       minify: globals.__PROD__,
       inject: 'body'
-    })
+    }),
+    new ModernizrPlugin(config.get('modernizr'))
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],
