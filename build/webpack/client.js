@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import config  from '../../config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import ModernizrPlugin from './plugins/modernizr';
+import ModernizrPlugin from 'modernizr-webpack-plugin';
 
 const paths = config.get('utils_paths'),
   globals = config.get('globals');
@@ -10,7 +10,7 @@ const paths = config.get('utils_paths'),
 const webpackConfig = {
   name: 'client',
   target: 'web',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   entry: {
     app: [
       paths.src('entry-points/client')
