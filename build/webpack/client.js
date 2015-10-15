@@ -46,7 +46,30 @@ const webpackConfig = {
       {
         test: /\.jsx?$/,
         include: paths.project(config.get('dir_src')),
-        loaders: ['babel?optional[]=runtime']
+        loader: 'babel',
+        query: ((query) => {
+          if (globals.__DEV__) {
+            query = Object.assign({}, query, {
+              'plugins': [
+                'react-transform'
+              ],
+              'extra': {
+                'react-transform': {
+                  'transforms': [{
+                    'transform': 'react-transform-hmr',
+                    'imports': [
+                      'react'
+                    ],
+                    'locals': [
+                      'module'
+                    ]
+                  }]
+                }
+              }
+            })
+          }
+          return query;
+        })({optional: ['runtime']})
       },
       {
         test: /\.scss$/,
