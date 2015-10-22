@@ -26,16 +26,16 @@ class HomeView extends React.Component {
   // Event handlers
   // -----------------------------------------------------------------------------
 
-  _clearMessage = () => {
+  clearMessage = () => {
   };
 
-  _updateInputTextHandler = (e) => {
+  updateInputTextHandler = (e) => {
     this.props.updateUserDetails({
       firstName: e.target.value
     })
   };
 
-  _updateAsyncMessage = () => {
+  updateAsyncMessage = () => {
     //var select = this.refs.asyncDelaySelect;
     //this.props.dispatch(updateMessageAsync('Updated message', select.value));
   };
@@ -48,14 +48,14 @@ class HomeView extends React.Component {
       <div>
         <h1 className={styles.private}>{this.props.firstName}</h1>
         <input type='text' value={this.props.firstName}
-               onChange={this._updateInputTextHandler}/>
+               onChange={this.updateInputTextHandler}/>
         <select ref='asyncDelaySelect'>
           <option value='1000'>1 second</option>
           <option value='1500'>1.5 seconds</option>
           <option value='2000'>2 seconds</option>
         </select>
-        <button onClick={this._clearMessage}>Clear Message</button>
-        <button onClick={this._updateAsyncMessage}>Update Async</button>
+        <button onClick={this.clearMessage}>Clear Message</button>
+        <button onClick={this.updateAsyncMessage}>Update Async</button>
         <div>
           <p>This should be text in Roboto font</p>
 

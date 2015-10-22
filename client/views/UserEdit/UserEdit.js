@@ -36,16 +36,16 @@ class UserEditView extends React.Component {
   // Class methods
   // -----------------------------------------------------------------------------
 
-  _generateInputFields():Array {
+  generateInputFields():Array {
     return this.inputFields.map(({ placeholder, name, type = 'text' }) => {
       return <input type={type} key={name} ref={name}
                     placeholder={placeholder}
                     value={this.props[name]}
-                    onChange={this._inputFieldChangeHandler}/>;
+                    onChange={this.inputFieldChangeHandler}/>;
     })
   }
 
-  _getProgress():Number {
+  getProgress():Number {
     const total = this.inputFields.filter((item) => {
       return this.props[item.name].length;
     });
@@ -57,7 +57,7 @@ class UserEditView extends React.Component {
   // Event handlers
   // -----------------------------------------------------------------------------
 
-  _inputFieldChangeHandler = () => {
+  inputFieldChangeHandler = () => {
     this.props.updateUserDetails({
       firstName: this.refs.firstName.value,
       lastName: this.refs.lastName.value,
@@ -72,8 +72,8 @@ class UserEditView extends React.Component {
   render() {
     return (
       <div className={style}>
-        {this._generateInputFields()}
-        <ProgressBarView progress={this._getProgress()} showText/>
+        {this.generateInputFields()}
+        <ProgressBarView progress={this.getProgress()} showText/>
         <Link to='/'>Home</Link>
       </div>
     );

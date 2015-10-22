@@ -47,7 +47,7 @@ describe('(utils) ReactReduxUtils', () => {
 
   });
 
-  describe.only('.createDevToolsWindow()', () => {
+  describe('.createDevToolsWindow()', () => {
     const initState = {firstName: 'FirstName', lastName: 'LastName'};
     const reducer = (prev, payload) => {
       return Object.assign({}, initState, prev, payload);
