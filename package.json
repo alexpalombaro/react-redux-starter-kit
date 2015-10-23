@@ -74,7 +74,6 @@
     "phantomjs-polyfill": "0.0.1",
     "react-addons-test-utils": "^0.14.0-rc1",
     "react-transform-hmr": "^1.0.0",
-    "redux-devtools": "^2.0.0",
     "style-loader": "^0.13.0",
     "supertest": "^1.0.1",
     "webpack": "^1.11.0",

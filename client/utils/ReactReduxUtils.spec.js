@@ -4,12 +4,10 @@
 import {
   createConstants,
   createReducer,
-  createDevToolsWindow,
   shallowRender
 } from 'utils';
 
 import {createStore} from 'redux';
-import {devTools} from 'redux-devtools';
 
 describe('(utils) ReactReduxUtils', () => {
 
@@ -45,23 +43,6 @@ describe('(utils) ReactReduxUtils', () => {
       expect(reducer(initialState, {type: 'ACTION_B', payload: {age: 40}})).to.eql({name: 'Bob', age: 40});
     })
 
-  });
-
-  describe('.createDevToolsWindow()', () => {
-    const initState = {firstName: 'FirstName', lastName: 'LastName'};
-    const reducer = (prev, payload) => {
-      return Object.assign({}, initState, prev, payload);
-    };
-    it('Should create a popup with the ReactRedux dev tools', (cb) => {
-      const store = devTools()(createStore)(reducer);
-      expect('getState' in store).to.be.true;
-      const popup = createDevToolsWindow(store);
-      setTimeout(()=> {
-        expect(popup.document.getElementById('root')).to.exist;
-        popup.close();
-        cb();
-      }, 100)
-    })
   });
 
 });

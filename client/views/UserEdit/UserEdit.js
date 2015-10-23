@@ -6,7 +6,8 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import {UserEditAction} from 'actions';
 
-import {ProgressBarView} from 'views';
+import {ProgressBarView, InputDateView} from 'views';
+import {debug} from 'utils';
 
 //
 // Component
@@ -65,6 +66,11 @@ class UserEditView extends React.Component {
     });
   };
 
+  dateChangeHandler = (event) => {
+    var date = event.target.value;
+    debug(date);
+  };
+
   //
   // Render
   // -----------------------------------------------------------------------------
@@ -75,10 +81,10 @@ class UserEditView extends React.Component {
         {this.generateInputFields()}
         <ProgressBarView progress={this.getProgress()} showText/>
         <Link to='/'>Home</Link>
+        <InputDateView onChange={this.dateChangeHandler}/>
       </div>
     );
   }
-
 }
 
 //
