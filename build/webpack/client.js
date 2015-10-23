@@ -57,12 +57,8 @@ const webpackConfig = {
                 'react-transform': {
                   'transforms': [{
                     'transform': 'react-transform-hmr',
-                    'imports': [
-                      'react'
-                    ],
-                    'locals': [
-                      'module'
-                    ]
+                    'imports': ['react'],
+                    'locals': ['module']
                   }]
                 }
               }
