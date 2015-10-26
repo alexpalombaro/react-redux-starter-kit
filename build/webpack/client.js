@@ -148,7 +148,8 @@ if (globals.__PROD__) {
       },
       compress: {
         'unused': true,
-        'dead_code': true
+        'dead_code': true,
+        'drop_debugger':true
       }
     })
   );

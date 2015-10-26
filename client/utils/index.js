@@ -19,7 +19,7 @@ export const Modernizr = (prop):Boolean => {
   const result =  ModernizrInstance !== null ? lodash.get(ModernizrInstance, prop, 'missing') : null;
   if (__DEV__) {
     if (result === 'missing') {
-      debug(`Invalid Modernizr testing reference '${prop}'. Ensure test is included in the config build.`);
+      debug(`Invalid Modernizr feature reference '${prop}'. Ensure feature is included in the config build.`);
     }
   }
   return result;
@@ -31,4 +31,3 @@ export const Modernizr = (prop):Boolean => {
 export {createConstants, createReducer} from './ReactReduxUtils';
 export {shallowRender} from './ReactTestUtils';
 export {debug} from './DebugUtils';
-
