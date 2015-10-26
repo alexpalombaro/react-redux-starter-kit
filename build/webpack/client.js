@@ -32,7 +32,6 @@ const webpackConfig = {
       template: paths.src('index.html'),
       hash: true,
       filename: 'index.html',
-      minify: globals.__PROD__,
       inject: 'body'
     }),
     new ModernizrPlugin(config.get('modernizr'))
@@ -48,7 +47,7 @@ const webpackConfig = {
         include: paths.project(config.get('dir_src')),
         loader: 'babel',
         query: ((query) => {
-          if (globals.__DEV__) {
+          if (globals.__HMR__) {
             query = Object.assign({}, query, {
               'plugins': [
                 'react-transform'

@@ -1,4 +1,5 @@
 import {style} from './InputDate.scss';
+import {debug, Modernizr} from 'utils';
 
 import React from 'react';
 
@@ -17,6 +18,7 @@ class InputDateView extends React.Component {
   // Render
   // -----------------------------------------------------------------------------
   render() {
+    debug(Modernizr('inputtypes.date2'));
     return (
       <input type='date' onChange={this.props.onChange}/>
     );
