@@ -3,6 +3,7 @@ import config  from '../../config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ModernizrPlugin from 'modernizr-webpack-plugin';
+import WebpackLoggerPlugin from 'webpack-logger-plugin';
 
 const paths = config.get('utils_paths'),
   globals = config.get('globals');
@@ -34,7 +35,8 @@ const webpackConfig = {
       filename: 'index.html',
       inject: 'body'
     }),
-    new ModernizrPlugin(config.get('modernizr'))
+    new ModernizrPlugin(config.get('modernizr')),
+    new WebpackLoggerPlugin(config.get('webpack-logger'))
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],

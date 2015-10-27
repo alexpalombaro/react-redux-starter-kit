@@ -54,7 +54,8 @@ config.set('vendor_dependencies', [
   'react',
   'react-redux',
   'react-router',
-  'redux'
+  'redux',
+  'lodash'
 ]);
 
 // ------------------------------------
@@ -93,6 +94,10 @@ config.set('modernizr', {
     'input',
     'inputtypes'
   ]
+});
+
+config.set('webpack-logger', {
+  'append': false
 });
 
 export default config;
