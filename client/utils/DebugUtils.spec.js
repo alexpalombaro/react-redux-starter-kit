@@ -1,10 +1,10 @@
 /* eslint-env browser, mocha, jasmine */
 
-import {debug} from './DebugUtils';
+import {log} from './DebugUtils';
 
 describe('(utils) DebugUtils', () => {
 
-  it('should attach a debug instance to window as logger', () => {
+  it('should attach a log instance to window as logger', () => {
     expect(window.logger).to.be.a('function');
   })
 

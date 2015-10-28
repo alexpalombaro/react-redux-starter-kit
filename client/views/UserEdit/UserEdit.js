@@ -7,7 +7,7 @@ import {Link} from 'react-router';
 import {UserEditAction} from 'actions';
 
 import {ProgressBarView, InputDateView} from 'views';
-import {debug} from 'utils';
+import {log, Modernizr} from 'utils';
 
 //
 // Component
@@ -31,21 +31,12 @@ class UserEditView extends React.Component {
   // -----------------------------------------------------------------------------
 
   getProgress = () => {
-    const inputs = Object.keys(this.refs).map((key) => {
-      const element = this.refs[key];
-      if (typeof element.getInputElement === 'function') {
-        return element.getInputElement();
-      }
-      if (element.nodeName.toLowerCase() === 'input') {
-        return element;
-      }
+    const props = ['firstName', 'lastName', 'dob'];
+    const done = props.filter((prop) => {
+      return this.props[prop].length > 0;
     });
 
-    const complete = inputs.filter((element) => {
-      return element.value;
-    });
-
-    return (complete.length / inputs.length) * 100;
+    return (done.length / props.length) * 100;
   };
 
   //
@@ -59,9 +50,10 @@ class UserEditView extends React.Component {
     });
   };
 
-  dateChangeHandler = (event) => {
-    var date = event.target.value;
-    debug(date);
+  dateChangeHandler = (value) => {
+    this.props.updateUserDetails({
+      dob: value
+    })
   };
 
   //
@@ -71,16 +63,16 @@ class UserEditView extends React.Component {
   render() {
     return (
       <div className={style}>
-        <div className="input-group">
-          <label htmlFor="firstName">First Name:</label>
-          <input type="text" placeholder="Joe" id="firstName" ref="firstName"
+        <form className="input-group" autoComplete="on">
+          <label htmlFor="firstName" className={Modernizr('input', 'placeholder') ? 'sr-only' : ''}>First Name:</label>
+          <input type="text" placeholder="First Name" id="firstName" ref="firstName"
                  value={this.props.firstName} onChange={this.inputFieldChangeHandler}/>
-          <label htmlFor="lastName">Last Name:</label>
-          <input type="text" placeholder="Blogs" id="lastName" ref="lastName"
+          <label htmlFor="lastName" className={Modernizr('input', 'placeholder') ? 'sr-only' : ''}>Last Name:</label>
+          <input type="text" placeholder="Last Name" id="lastName" ref="lastName"
                  value={this.props.lastName} onChange={this.inputFieldChangeHandler}/>
           <label htmlFor="dob">Date of birth:</label>
-          <InputDateView id="dob" ref="dob" onChange={this.dateChangeHandler}/>
-        </div>
+          <InputDateView value={this.props.dob} id="dob" ref="dob" onChange={this.dateChangeHandler}/>
+        </form>
         <ProgressBarView progress={this.getProgress()} showText/>
         <Link to="/">Home</Link>
       </div>

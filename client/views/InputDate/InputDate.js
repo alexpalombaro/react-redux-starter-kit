@@ -1,5 +1,5 @@
 import {style} from './InputDate.scss';
-import {debug, Modernizr} from 'utils';
+import {log, Modernizr} from 'utils';
 
 import React from 'react';
 
@@ -9,29 +9,39 @@ import React from 'react';
 class InputDateView extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isValid: false
+    }
   }
 
   static propTypes = {
-    date: React.PropTypes.string
+    value: React.PropTypes.string,
+    onChange: React.PropTypes.func
   };
 
-  validateInputText = () => {
-    var date = event.target.value;
-    debug(date);
+  validateDate = (event) => {
+    const date = event.target.value;
+    const isValid = !!(date && date.length);
+    if (this.state.isValid !== isValid) {
+      this.setState({isValid});
+      if (this.props.onChange) this.props.onChange(isValid ? date : null);
+    }
   };
 
   resolveInputType = () => {
     if (Modernizr(['inputtypes', 'date'])) {
-      return <input type="date" onChange={this.props.onChange} ref="inputDate"
-                    value={this.props.date}/>
+      return <input type="date" className={this.state.isValid ? '' : 'invalid'}
+                    onChange={this.validateDate} ref="inputDate" value={this.props.value}/>;
     }
-    return <input type="text" onChange={this.validateInputText} ref="inputDate"
-                  placeholder="dd/mm/yyyy" value={this.props.date}/>
+
+    return <input type="text" onChange={this.validateDate} ref="inputDate"
+                  placeholder="dd/mm/yyyy" value={this.props.value}/>;
   };
 
-  getInputElement = () => {
-    return this.refs.inputDate;
-  }
+  hasValidDate = () => {
+    return this.state.isValid;
+  };
 
   //
   // Render

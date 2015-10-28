@@ -1,4 +1,4 @@
-import {createReducer} from 'utils';
+import {log, createReducer} from 'utils';
 import {ActionType} from 'actions';
 
 //

@@ -1,7 +1,7 @@
 //
 // Imports
 // -----------------------------------------------------------------------------
-import {debug} from './DebugUtils';
+import {log} from './DebugUtils';
 import lodash from 'lodash';
 
 //
@@ -11,15 +11,16 @@ const ModernizrInstance = typeof window !== 'undefined' ? window.Modernizr : nul
 
 /**
  *
- * @param {string|Array} prop string or array referencing Modernizr object property
+ * @param {array|string|args} params Comma seperated reference to Modernizr object
  * @returns {boolean} If the feature is supported
  * @constructor
  */
-export const Modernizr = (prop):Boolean => {
-  const result =  ModernizrInstance !== null ? lodash.get(ModernizrInstance, prop, 'missing') : null;
+export const Modernizr = function (...params):Boolean {
+  const array = lodash.flattenDeep(params);
+  const result = ModernizrInstance !== null ? lodash.get(ModernizrInstance, array, 'missing') : null;
   if (__DEV__) {
     if (result === 'missing') {
-      debug(`Invalid Modernizr feature reference '${prop}'. Ensure feature is included in the config build.`);
+      log(`Invalid Modernizr feature reference '${array}'. Ensure feature is included in the config build.`);
     }
   }
   return result === 'missing' ? false : result;
@@ -30,4 +31,4 @@ export const Modernizr = (prop):Boolean => {
 // -----------------------------------------------------------------------------
 export {createConstants, createReducer} from './ReactReduxUtils';
 export {shallowRender} from './ReactTestUtils';
-export {debug} from './DebugUtils';
+export {log} from './DebugUtils';
