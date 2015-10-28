@@ -12,17 +12,38 @@ class InputDateView extends React.Component {
   }
 
   static propTypes = {
+    date: React.PropTypes.string
   };
+
+  validateInputText = () => {
+    var date = event.target.value;
+    debug(date);
+  };
+
+  resolveInputType = () => {
+    if (Modernizr(['inputtypes', 'date'])) {
+      return <input type="date" onChange={this.props.onChange} ref="inputDate"
+                    value={this.props.date}/>
+    }
+    return <input type="text" onChange={this.validateInputText} ref="inputDate"
+                  placeholder="dd/mm/yyyy" value={this.props.date}/>
+  };
+
+  getInputElement = () => {
+    return this.refs.inputDate;
+  }
 
   //
   // Render
   // -----------------------------------------------------------------------------
   render() {
-    debug(Modernizr('inputtypes.date2'));
     return (
-      <input type='date' onChange={this.props.onChange}/>
+      <div className={style}>
+        {this.resolveInputType()}
+      </div>
     );
   }
+
 }
 
 export default InputDateView

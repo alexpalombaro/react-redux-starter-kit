@@ -25,12 +25,13 @@ class ProgressBarView extends React.Component {
   // -----------------------------------------------------------------------------
   render() {
     const {progress, showText} = this.props;
+    const rounded = Math.round(progress);
     return (
       <div className={style}>
         <div className='progress'>
-          <div className='progress-bar' role='progressbar' aria-valuenow={progress}
-               aria-valuemax='100' style={{width: `${progress}%`}}>
-            {showText ? `${progress}%` : null}
+          <div className='progress-bar' role='progressbar' aria-valuenow={rounded}
+               aria-valuemax='100' style={{width: `${rounded}%`}}>
+            {showText ? `${rounded}%` : null}
           </div>
         </div>
       </div>

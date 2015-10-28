@@ -1,4 +1,8 @@
 // css-loader component styles
 :local(.style) {
-    //insert all component specific styles here
+
+  input {
+    width: 100%;
+  }
+
 }

@@ -1,13 +1,22 @@
 // css-loader component styles
 :local(.style) {
 
-  margin: 0.5em;
+  margin: 0.5rem;
 
+  label,
   input {
     display: block;
-    margin-top: 0.4em;
-    &:first-of-type {
-      margin-top: 0;
-    }
+    width: 100%;
   }
+
+  input {
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group {
+    margin-bottom: 4rem;
+  }
+
+  width: 400px;
+
 }

@@ -16,13 +16,6 @@ class UserEditView extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.inputFields = [
-      {name: 'firstName', placeholder: 'First Name'},
-      {name: 'lastName', placeholder: 'Last Name'},
-      {name: 'email', placeholder: 'Email'},
-      {name: 'dob', type: 'date'}
-    ];
   }
 
 
@@ -37,22 +30,23 @@ class UserEditView extends React.Component {
   // Class methods
   // -----------------------------------------------------------------------------
 
-  generateInputFields():Array {
-    return this.inputFields.map(({ placeholder, name, type = 'text' }) => {
-      return <input type={type} key={name} ref={name}
-                    placeholder={placeholder}
-                    value={this.props[name]}
-                    onChange={this.inputFieldChangeHandler}/>;
-    })
-  }
-
-  getProgress():Number {
-    const total = this.inputFields.filter((item) => {
-      return this.props[item.name].length;
+  getProgress = () => {
+    const inputs = Object.keys(this.refs).map((key) => {
+      const element = this.refs[key];
+      if (typeof element.getInputElement === 'function') {
+        return element.getInputElement();
+      }
+      if (element.nodeName.toLowerCase() === 'input') {
+        return element;
+      }
     });
 
-    return (total.length / this.inputFields.length) * 100;
-  }
+    const complete = inputs.filter((element) => {
+      return element.value;
+    });
+
+    return (complete.length / inputs.length) * 100;
+  };
 
   //
   // Event handlers
@@ -61,8 +55,7 @@ class UserEditView extends React.Component {
   inputFieldChangeHandler = () => {
     this.props.updateUserDetails({
       firstName: this.refs.firstName.value,
-      lastName: this.refs.lastName.value,
-      email: this.refs.email.value
+      lastName: this.refs.lastName.value
     });
   };
 
@@ -78,10 +71,18 @@ class UserEditView extends React.Component {
   render() {
     return (
       <div className={style}>
-        {this.generateInputFields()}
+        <div className="input-group">
+          <label htmlFor="firstName">First Name:</label>
+          <input type="text" placeholder="Joe" id="firstName" ref="firstName"
+                 value={this.props.firstName} onChange={this.inputFieldChangeHandler}/>
+          <label htmlFor="lastName">Last Name:</label>
+          <input type="text" placeholder="Blogs" id="lastName" ref="lastName"
+                 value={this.props.lastName} onChange={this.inputFieldChangeHandler}/>
+          <label htmlFor="dob">Date of birth:</label>
+          <InputDateView id="dob" ref="dob" onChange={this.dateChangeHandler}/>
+        </div>
         <ProgressBarView progress={this.getProgress()} showText/>
-        <Link to='/'>Home</Link>
-        <InputDateView onChange={this.dateChangeHandler}/>
+        <Link to="/">Home</Link>
       </div>
     );
   }

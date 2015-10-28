@@ -22,7 +22,7 @@ export const Modernizr = (prop):Boolean => {
       debug(`Invalid Modernizr feature reference '${prop}'. Ensure feature is included in the config build.`);
     }
   }
-  return result;
+  return result === 'missing' ? false : result;
 };
 
 //

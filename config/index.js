@@ -90,6 +90,7 @@ config.set('utils_aliases', [
 ].reduce((acc, x) => ((acc[x] = paths.src(x)) && acc), {}));
 
 config.set('modernizr', {
+  'filename':'modernizr.[hash]',
   'feature-detects': [
     'input',
     'inputtypes'
