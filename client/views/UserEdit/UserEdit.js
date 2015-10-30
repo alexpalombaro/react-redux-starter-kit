@@ -70,7 +70,6 @@ class UserEditView extends React.Component {
                      validatorFn={validEmail}
                      onChange={value => updateUserDetails({email:value})}/>
           <label htmlFor="dob">Date of birth:</label>
-          <InputView id="date" type="date"
           <InputDateView value={this.props.dob} id="dob" ref="dob" onChange={this.dateChangeHandler}/>
           <input type="submit" value="Update"/>
         </form>
