@@ -1,5 +1,5 @@
 import {style} from './InputDate.scss';
-import {log, Modernizr} from 'utils';
+import {log, Modernizr, validDate} from 'utils';
 
 import React from 'react';
 
@@ -11,8 +11,10 @@ class InputDateView extends React.Component {
     super(props);
 
     this.state = {
-      isValid: false
-    }
+      isValid: validDate(props.value)
+    };
+
+    this.pendingValue = '';
   }
 
   static propTypes = {
@@ -20,27 +22,36 @@ class InputDateView extends React.Component {
     onChange: React.PropTypes.func
   };
 
-  validateDate = (event) => {
-    const date = event.target.value;
-    const isValid = !!(date && date.length);
-    if (this.state.isValid !== isValid) {
-      this.setState({isValid});
-      if (this.props.onChange) this.props.onChange(isValid ? date : null);
-    }
-  };
-
   resolveInputType = () => {
     if (Modernizr(['inputtypes', 'date'])) {
       return <input type="date" className={this.state.isValid ? '' : 'invalid'}
-                    onChange={this.validateDate} ref="inputDate" value={this.props.value}/>;
+                    onChange={this.dateChangeHandler} ref="inputDate" value={this.props.value}/>;
     }
 
-    return <input type="text" onChange={this.validateDate} ref="inputDate"
-                  placeholder="dd/mm/yyyy" value={this.props.value}/>;
+    return <input type="text" className={this.state.isValid ? '' : 'invalid'}
+                  onChange={this.dateChangeHandler} ref="inputDate" placeholder="dd/mm/yyyy"
+                  value={this.pendingValue.length ? this.pendingValue : this.props.value}/>;
   };
 
-  hasValidDate = () => {
-    return this.state.isValid;
+  //
+  // Event Handlers
+  // -----------------------------------------------------------------------------
+
+  dateChangeHandler = (event) => {
+    const date = event.target.value;
+    const isValid = validDate(date);
+    if (this.state.isValid !== isValid) {
+      this.setState({isValid});
+    }
+
+    if (this.props.onChange) {
+      this.props.onChange(isValid ? date : null);
+    }
+
+    if (event.target.type === 'text') {
+      this.pendingValue = date;
+      event.target.value = this.pendingValue;
+    }
   };
 
   //

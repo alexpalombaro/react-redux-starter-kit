@@ -31,4 +31,5 @@ export const Modernizr = function (...params):Boolean {
 // -----------------------------------------------------------------------------
 export {createConstants, createReducer} from './ReactReduxUtils';
 export {shallowRender} from './ReactTestUtils';
-export {log} from './DebugUtils';
+export {log, createLogger} from './DebugUtils';
+export {validDate, validEmail} from './ValidatorUtils';
