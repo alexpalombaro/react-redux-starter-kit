@@ -1,4 +1,11 @@
 // css-loader component styles
 :local(.style) {
-    //insert all component specific styles here
+
+  input.invalid {
+    border: red 2px solid;
+  }
+
+  input.valid {
+    border: green 2px solid;
+  }
 }

@@ -10,6 +10,11 @@ import React from 'react';
 class InputView extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      inputValid: -1,
+      pending: ''
+    };
   }
 
   static propTypes = {
@@ -21,9 +26,15 @@ class InputView extends React.Component {
   // Render
   // -----------------------------------------------------------------------------
   render() {
+    const {inputValid, pending} = this.state;
+    const props = Object.assign({}, this.props, {
+      'className': inputValid > 0 ? 'valid' : inputValid < 0 ? '' : 'invalid',
+      'value': pending.length ? pending : this.props.value,
+      'onChange': this.onChangeHandler
+    });
     return (
       <div className={style}>
-        <input {...this.props} onChange={this.onChangeHandler}/>
+        <input {...props}/>
       </div>
     );
   }
@@ -32,12 +43,23 @@ class InputView extends React.Component {
   // Event handlers
   // -----------------------------------------------------------------------------
   onChangeHandler = (event) => {
-    if (typeof this.props.onChange !== 'function') return;
-
-    if (typeof this.props.validatorFn !== 'function' ||
-      this.props.validatorFn(event.target.value)) {
-      this.props.onChange(event.target.value);
+    const {value} = event.target;
+    const {validatorFn, onChange} = this.props;
+    let inputValid = value.length ? 1 : -1;
+    if (typeof validatorFn === 'function' && value.length > 0) {
+      inputValid = validatorFn(value) ? 1 : 0;
     }
+
+    let pending = value;
+    if (typeof onChange === 'function' && inputValid) {
+      onChange(value);
+      pending = '';
+    }
+
+    this.setState({
+      pending,
+      inputValid
+    })
   }
 }
 
